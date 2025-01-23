@@ -1,36 +1,22 @@
-
 services:
-  php:
-      build:
-        context: .
-        dockerfile: Dockerfile
-      ports:
-        - 80:80
-      volumes:
-        - .:/var/www/html/
-      environment:
-        - compose=true
-  
-  mariadb:
-      image: mariadb:latest
-      container_name: mariadb
-      restart: always
-      environment:
-        MYSQL_USER: mariadb
-        MYSQL_PASSWORD: mariadb
-        MYSQL_DATABASE: mariadb
-        MARIADB_ROOT_PASSWORD: mariadb
-      ports:
-        - 3306:3306
-      volumes:
-        - mariadb_data:/var/lib/mysql
-  
-  adminer:
-      image: adminer:latest
-      container_name: adminer
-      restart: always
-      ports:
-        - 8080:8080
+    mariadb:
+        image: mariadb:latest
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: mariadb
+            MYSQL_USER: mariadb
+            MYSQL_PASSWORD: mariadb
+            MYSQL_DATABASE: mariadb
+        ports:
+            - "3306:3306"
+        volumes:
+            - maraiadb_data:/var/lib/mysql
+
+    adminer:
+        image: adminer:latest
+        restart: always
+        ports:
+            - 8080:8080
 
 volumes:
-  mariadb_data:
+    maraiadb_data:
