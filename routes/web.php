@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('Homepage');
 });
-Route::get('/admin_delete_ratings', function () {
-    return view('Delete ratings');
-});
 Route::get('/admin_delete_titles', function () {
     return view('Delete titles');
 });
