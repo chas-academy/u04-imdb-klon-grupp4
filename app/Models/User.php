@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,47 +14,44 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    
-     // Relation till Movie-modellen via saved_movie_user-tabellen
-     public function savedMovies()
-     {
-         return $this->belongsToMany(Movie::class, 'saved_movie_user');
-     }
- 
-     // Relation till Movie-modellen via list_movie_user-tabellen
-     public function listedMovies()
-     {
-         return $this->belongsToMany(Movie::class, 'list_movie_user');
-     }
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean',
+    ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Define the many-to-many relationship with Movie.
      */
-    protected function casts(): array
+    /**public function movies()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+        return $this->belongsToMany(Movie::class, 'user_movie', 'user_id', 'movie_id')->withTimestamps();
+    }*/
+
+    /**
+     * Define the many-to-many relationship with MovieList.
+     */
+    
 }

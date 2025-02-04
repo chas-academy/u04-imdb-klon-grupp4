@@ -1,20 +1,15 @@
 <?php
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
-    protected $table = 'genres';
+    use HasFactory;
 
-    protected $fillable = [
-        'name'
-    ];
-
-    // Relation till Movie-modellen via movie_genre-tabellen
     public function movies()
     {
-        return $this->belongsToMany(Movie::class, 'movie_genre');
+        return $this->belongsToMany(Movie::class, 'genre_movie', 'genre_id', 'movie_id')->withTimestamps();
     }
 }

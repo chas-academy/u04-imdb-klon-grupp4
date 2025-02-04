@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -11,21 +12,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('lists', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->boolean('is_admin');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade'); // Add user_id foreign key
+            $table->string('title');
             $table->timestamps();
-        });
 
+        });
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-       
+        Schema::dropIfExists('lists');
     }
 };

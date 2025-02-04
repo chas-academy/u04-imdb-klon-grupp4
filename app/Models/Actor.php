@@ -1,20 +1,15 @@
 <?php
-
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Actor extends Model
 {
-    protected $table = 'actors';
+    use HasFactory;
 
-    protected $fillable = [
-        'first_name', 'last_name', 'nationality', 'birthdate'
-    ];
-
-    // Relation till Movie-modellen via movie_actor-tabellen
     public function movies()
     {
-        return $this->belongsToMany(Movie::class, 'movie_actor');
+        return $this->belongsToMany(Movie::class, 'actor_movie', 'actor_id', 'movie_id')->withTimestamps();
     }
 }

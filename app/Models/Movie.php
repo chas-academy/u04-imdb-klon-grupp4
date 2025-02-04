@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -8,39 +8,28 @@ class Movie extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'release_year',
-        'rating_id',
-        'plot',
-        'movie_length',
-    ];
-
-    public function rating()
-    {
-        return $this->belongsTo(Rating::class);
-    }
-    // Relation till Genre-modellen via movie_genre-tabellen
     public function genres()
     {
-        return $this->belongsToMany(Genre::class, 'movie_genre');
+        return $this->belongsToMany(Genre::class, 'genre_movie', 'movie_id', 'genre_id')->withTimestamps();
     }
 
-    // Relation till Director-modellen via movie_director-tabellen
-    public function directors()
-    {
-        return $this->belongsToMany(Director::class, 'movie_director');
-    }
-
-    // Relation till Actor-modellen via movie_actor-tabellen
     public function actors()
     {
-        return $this->belongsToMany(Actor::class, 'movie_actor');
+        return $this->belongsToMany(Actor::class, 'actor_movie', 'movie_id', 'actor_id')->withTimestamps();
     }
 
-    // Relation till Award-modellen
-    public function awards()
+    public function directors()
     {
-        return $this->hasMany(Award::class);
+        return $this->belongsToMany(Director::class, 'director_movie', 'movie_id', 'director_id')->withTimestamps();
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'user_movie', 'movie_id', 'user_id')->withTimestamps();
+    }
+    
+    public function movieLists()
+    {
+        return $this->belongsToMany(MovieList::class, 'movie_movie_list', 'movie_id', 'movie_list_id')->withTimestamps();
     }
 }
