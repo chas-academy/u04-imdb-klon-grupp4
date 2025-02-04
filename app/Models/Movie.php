@@ -23,13 +23,8 @@ class Movie extends Model
         return $this->belongsToMany(Director::class, 'director_movie', 'movie_id', 'director_id')->withTimestamps();
     }
 
-    public function users()
+    public function lists()
     {
-        return $this->belongsToMany(User::class, 'user_movie', 'movie_id', 'user_id')->withTimestamps();
-    }
-    
-    public function movieLists()
-    {
-        return $this->belongsToMany(MovieList::class, 'movie_movie_list', 'movie_id', 'movie_list_id')->withTimestamps();
+        return $this->belongsToMany(MovieList::class, 'list_movie', 'movie_id', 'list_id')->withTimestamps();
     }
 }
