@@ -33,6 +33,19 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    
+     // Relation till Movie-modellen via saved_movie_user-tabellen
+     public function savedMovies()
+     {
+         return $this->belongsToMany(Movie::class, 'saved_movie_user');
+     }
+ 
+     // Relation till Movie-modellen via list_movie_user-tabellen
+     public function listedMovies()
+     {
+         return $this->belongsToMany(Movie::class, 'list_movie_user');
+     }
+
     /**
      * Get the attributes that should be cast.
      *
