@@ -12,8 +12,15 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+                outfit: ["Outfit", ...defaultTheme.fontFamily.sans],
             },
+
+            colors: {
+                sun: {
+                    400: "#CA362E",
+                    500: "#9D2924"
+                }
+            }
         },
     },
 
