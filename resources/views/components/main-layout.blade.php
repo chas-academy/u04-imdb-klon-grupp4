@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="font-outfit bg-neutral-800 text-base text-neutral-100">
+<html lang="en" class="bg-neutral-800 font-outfit text-base text-neutral-100">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,8 @@
         @vite(["resources/css/app.css", "resources/js/app.js"])
     </head>
     <body>
-        <x-navbar />
+        <x-header />
+
         <main>
             {{ $slot }}
         </main>
