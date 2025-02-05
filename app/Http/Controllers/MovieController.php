@@ -1,64 +1,23 @@
 <?php
+namespace app\Http\Controllers;
 
-namespace App\Http\Controllers;
-
+use App\Models\movie;
+use app\Models\genre;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Show all movies in a specific genre
+    public function index(genre $genre)
     {
-        //
+        $movies = $genre->movies; // Fetch movies that belong to this genre
+        return view('movies.index', compact('movies', 'genre'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Show a single movie's details
+    public function show(movie $movie)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('movies.show', compact('movie'));
     }
 }
+
