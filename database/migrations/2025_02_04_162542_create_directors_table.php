@@ -11,21 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('directors', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->boolean('is_admin');
-            $table->timestamps();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->date('birthdate');
+            $table->string('nationality');
+            $table->timestamps(); // Add created_at and updated_at columns
         });
-
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-       
+        Schema::dropIfExists('directors');
     }
 };
