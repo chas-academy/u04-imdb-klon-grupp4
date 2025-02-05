@@ -1,11 +1,7 @@
 <?php
 namespace app\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\movie;
-=======
-use app\Models\movie;
->>>>>>> d2afa69461078fd9855889825e39def999605242
 use app\Models\genre;
 use Illuminate\Http\Request;
 
