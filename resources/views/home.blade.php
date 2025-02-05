@@ -1,3 +1,1 @@
-<x-main-layout>
-    <x-header />
-</x-main-layout>
+<x-main-layout></x-main-layout>
