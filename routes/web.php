@@ -5,7 +5,6 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListController;
-
 // Hämta sidor (GET)
 Route::get('/', function () { return view('Homepage'); });
 Route::get('/admin', function () { return view('admin'); });
@@ -44,7 +43,6 @@ Route::post('/create-list', [ListController::class, 'store'])->name('list.create
 Route::delete('/admin-delete-titles', [AdminController::class, 'deleteTitle'])->name('admin.deleteTitle');
 Route::delete('/admin-delete-rating', [AdminController::class, 'deleteRating'])->name('admin.deleteRating');
 Route::post('/admin-manage-user', [AdminController::class, 'manageUser'])->name('admin.manageUser');
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -55,6 +53,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-
 require __DIR__.'/auth.php';
+
