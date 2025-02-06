@@ -17,9 +17,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'email',
         'password',
         'is_admin',
+        
     ];
 
     /**
@@ -41,7 +43,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
     ];
-
     /**
      * Define the many-to-many relationship with Movie.
      */
