@@ -4,6 +4,7 @@ namespace app\Http\Controllers;
 use app\Models\movie;
 use app\Models\genre;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 
 class movieController extends Controller
 {
