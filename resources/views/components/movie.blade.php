@@ -6,7 +6,7 @@
 ])
 
 <div
-    class="ratio relative aspect-[2/3] min-w-24 flex-col overflow-hidden rounded-lg"
+    class="ratio relative aspect-[2/3] min-w-24 cursor-pointer flex-col overflow-hidden rounded-lg"
 >
     @if (isset($poster))
         <img
