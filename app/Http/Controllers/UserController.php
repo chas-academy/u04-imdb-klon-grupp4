@@ -13,28 +13,28 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Visa användarprofil.
+      * Display a listing of the resource.
      */
     public function showProfile()
     {
-        $user = Auth::user(); // Hämta inloggad användare
+        $user = Auth::user(); // retrieve the logged in user
         return view('user.profile', compact('user'));
     }
 
 
     /**
-     * Visa användarens watchlist.
+    * Display the user's watchlist.
      */
     public function showWatchlist()
     {
         $user = Auth::user();
-        $watchlist = $user->watchlist()->with('movies')->get(); // Anta relation mellan användare och watchlist
+        $watchlist = $user->watchlist()->with('movies')->get(); // Assume a relationship between user and watchlist
         return view('user.watchlist', compact('watchlist'));
     }
 
 
     /**
-     * Uppdatera användarens information.
+     * Update the user's information.
      */
     public function update(Request $request)
     {
@@ -57,7 +57,7 @@ class UserController extends Controller
 
 
     /**
-     * Uppdatera användarens inställningar.
+      * Update the user's settings.
      */
     public function updateSettings(Request $request)
     {
@@ -77,7 +77,7 @@ class UserController extends Controller
 
 
     /**
-     * Ta bort användarens konto.
+     * Delete the user's account.
      */
     public function delete()
     {
