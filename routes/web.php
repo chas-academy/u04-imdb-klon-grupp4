@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListController;
-// Hämta sidor (GET)
+// (GET) pages
 Route::get('/', function () { return view('Homepage'); });
 Route::get('/admin', function () { return view('admin'); });
 Route::get('/admin-settings', function () { return view('admin-settings'); });
@@ -15,10 +15,10 @@ Route::get('/ratings', function () { return view('ratings'); });
 Route::get('/recently-viewed', function () { return view('recently-viewed'); });
 Route::get('/specific-movie', function () { return view('specific-movie'); });
 Route::get('/top-titles', function () { return view('top-titles'); });
-Route::get('/user', [UserController::class, 'show'])->name('user.show'); // Uppdaterad för att använda UserController
-Route::get('/watchlist', [UserController::class, 'watchlist'])->name('user.watchlist'); // Uppdaterad för watchlist
+Route::get('/user', [UserController::class, 'show'])->name('user.show'); // Updated to use usercontroller
+Route::get('/watchlist', [UserController::class, 'watchlist'])->name('user.watchlist'); // Uppdated for watchlist
 
-// Hantera användare
+// Manage user
 Route::get('/sign-in', function () { return view('sign-in'); });
 Route::post('/sign-in', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/log-out', [AuthController::class, 'logout'])->name('auth.logout');
@@ -35,7 +35,7 @@ Route::put('/user-settings', [UserController::class, 'updateSettings'])->name('u
 Route::get('/change-user-info', function () { return view('change-user-info'); });
 Route::patch('/change-user-info', [UserController::class, 'update'])->name('user.update');
 
-// Hantera listor
+// Manage lists
 Route::get('/create-list', function () { return view('create-list'); });
 Route::post('/create-list', [ListController::class, 'store'])->name('list.create');
 
