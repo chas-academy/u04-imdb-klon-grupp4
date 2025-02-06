@@ -1,4 +1,4 @@
-<header class="fixed flex w-full bg-neutral-900 p-4">
+<header class="fixed z-50 flex w-full bg-neutral-900 p-4">
     <x-logo showText />
 
     <nav class="flex gap-4">
