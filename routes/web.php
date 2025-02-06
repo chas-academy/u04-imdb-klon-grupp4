@@ -5,39 +5,57 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListController;
-// Hämta sidor (GET)
+use App\Http\Controllers\ReviewController; // Added ReviewController
+
+
+// (GET) Pages
 Route::get('/', function () { return view('Homepage'); });
 Route::get('/admin', function () { return view('admin'); });
 Route::get('/admin-settings', function () { return view('admin-settings'); });
-Route::get('/genres', function () { return view('genres'); });
+Route::get('/genres', [ReviewController::class, 'genres'])->name('genres'); // Updated to use ReviewController
 Route::get('/movies', function () { return view('movies'); });
 Route::get('/ratings', function () { return view('ratings'); });
-Route::get('/recently-viewed', function () { return view('recently-viewed'); });
-Route::get('/specific-movie', function () { return view('specific-movie'); });
+Route::get('/recently-viewed', [ReviewController::class, 'recentReviews'])->name('recently-viewed'); // Updated
+Route::get('/specific-movie/{id}', [ReviewController::class, 'showMovieReviews'])->name('specific-movie'); // Updated for specific movie
 Route::get('/top-titles', function () { return view('top-titles'); });
-Route::get('/user', [UserController::class, 'show'])->name('user.show'); // Uppdaterad för att använda UserController
-Route::get('/watchlist', [UserController::class, 'watchlist'])->name('user.watchlist'); // Uppdaterad för watchlist
+Route::get('/user', [UserController::class, 'show'])->name('user.show');
+Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist'); // Updated to ReviewController
 
-// Hantera användare
-Route::get('/sign-in', function () { return view('sign-in'); });
+
+// Manage Reviews
+Route::get('/reviews/create/{movie_id}', [ReviewController::class, 'create'])->name('reviews.create'); // Form to create a review
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store'); // Save a new review
+Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit'); // Form to edit a review
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update'); // Update an existing review
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy'); // Delete a review
+
+
+// Manage user
+Route::get('/sign-in', [ReviewController::class, 'signIn'])->name('sign-in'); // Updated
 Route::post('/sign-in', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/log-out', [AuthController::class, 'logout'])->name('auth.logout');
+
 
 Route::get('/create-account', function () { return view('create-account'); });
 Route::post('/create-account', [AuthController::class, 'register'])->name('auth.register');
 
+
 Route::get('/delete-account', function () { return view('delete-account'); });
 Route::delete('/delete-account', [UserController::class, 'delete'])->name('user.delete');
+
 
 Route::get('/user-settings', function () { return view('user-settings'); });
 Route::put('/user-settings', [UserController::class, 'updateSettings'])->name('user.updateSettings');
 
+
 Route::get('/change-user-info', function () { return view('change-user-info'); });
 Route::patch('/change-user-info', [UserController::class, 'update'])->name('user.update');
 
-// Hantera listor
+
+// Manage lists
 Route::get('/create-list', function () { return view('create-list'); });
 Route::post('/create-list', [ListController::class, 'store'])->name('list.create');
+
 
 // Admin-routes
 Route::delete('/admin-delete-titles', [AdminController::class, 'deleteTitle'])->name('admin.deleteTitle');
@@ -48,10 +66,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+// Profile management (auth middleware)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-require __DIR__.'/auth.php';
 
+
+require __DIR__.'/auth.php';
