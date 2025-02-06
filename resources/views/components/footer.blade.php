@@ -1,4 +1,4 @@
-<footer class="bg-neutral-900 px-28 py-12 flex gap-4 flex-col">
+<footer class="bg-neutral-900 px-28 py-12 flex gap-4 flex-col w-full">
     <div class="flex flex-row">
         <a href="/"><x-logo showText />
     
