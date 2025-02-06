@@ -13,7 +13,7 @@
         <main class="w-full max-w-5xl px-4">
             {{ $slot }}
         </main>
-        
+
         <x-footer />
     </body>
 </html>
