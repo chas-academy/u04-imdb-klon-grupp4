@@ -4,10 +4,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
+<<<<<<< HEAD
+use App\Http\Controllers\ListController;
+use App\Http\Controllers\ReviewController;
+use App\Https\Controllers\Auth\AuthController;
+=======
 use App\Http\Controllers\ListMovieUserController;
 use App\Http\Controllers\ReviewController; 
+>>>>>>> e1e56559f05fb2d1cf3869eb4fa636c2a6ee5dd9
 
 
 // (GET) Pages
