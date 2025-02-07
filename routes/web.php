@@ -2,10 +2,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListController;
-use App\Http\Controllers\ReviewController; // Added ReviewController
+use App\Http\Controllers\ReviewController;
+use App\Https\Controllers\Auth\AuthController;
 
 
 // (GET) Pages
