@@ -5,9 +5,10 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\ListController;
+use App\Http\Controllers\ListMovieUserController;
 use App\Http\Controllers\ReviewController;
 use App\Https\Controllers\Auth\AuthController;
+
 
 
 // (GET) Pages
@@ -54,19 +55,43 @@ Route::get('/change-user-info', function () { return view('change-user-info'); }
 Route::patch('/change-user-info', [UserController::class, 'update'])->name('user.update');
 
 
-// Manage lists
-Route::get('/create-list', function () { return view('create-list'); });
-Route::post('/create-list', [ListMovieUserController::class, 'store'])->name('list.create');
+// Manage lists (Logged in)
+Route::middleware('auth')->group(function () {
+    Route::get('/lists', [ListMovieUserController::class, 'index'])->name('lists.index');
+    Route::post('/lists/create', [ListMovieUserController::class, 'store'])->name('lists.store');
+    Route::delete('/lists/{list}/delete', [ListMovieUserController::class, 'destroy'])->name('lists.destroy');
+
+    Route::post('/lists/{list}/add', [ListMovieUserController::class, 'addMovie'])->name('lists.addMovie');
+    Route::delete('/lists/{list}/remove/{movie}', [ListMovieUserController::class, 'removeMovie'])->name('lists.removeMovie');
+});
 
 
 // Admin-routes
-Route::delete('/admin-delete-titles', [AdminController::class, 'deleteTitle'])->name('admin.deleteTitle');
-Route::delete('/admin-delete-rating', [AdminController::class, 'deleteRating'])->name('admin.deleteRating');
-Route::post('/admin-manage-user', [AdminController::class, 'manageUser'])->name('admin.manageUser');
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    // User Management
+    Route::get('/users', [AdminController::class, 'indexUsers'])->name('users.index');
+    Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create');
+    Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
+    Route::get('/users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');
+    Route::put('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
 
+    // Movie Management
+    Route::get('/movies', [AdminController::class, 'indexMovies'])->name('movies.index');
+    Route::get('/movies/create', [AdminController::class, 'createMovie'])->name('movies.create');
+    Route::post('/movies', [AdminController::class, 'storeMovie'])->name('movies.store');
+    Route::get('/movies/{movie}/edit', [AdminController::class, 'editMovie'])->name('movies.edit');
+    Route::put('/movies/{movie}', [AdminController::class, 'updateMovie'])->name('movies.update');
+    Route::delete('/movies/{movie}', [AdminController::class, 'destroyMovie'])->name('movies.destroy');
+
+    // Review Management
+    Route::get('/reviews', [AdminController::class, 'indexReviews'])->name('reviews.index');
+    Route::get('/reviews/create', [AdminController::class, 'createReview'])->name('reviews.create');
+    Route::post('/reviews', [AdminController::class, 'storeReview'])->name('reviews.store');
+    Route::get('/reviews/{review}/edit', [AdminController::class, 'editReview'])->name('reviews.edit');
+    Route::put('/reviews/{review}', [AdminController::class, 'updateReview'])->name('reviews.update');
+    Route::delete('/reviews/{review}', [AdminController::class, 'destroyReview'])->name('reviews.destroy');
+});
 
 // Profile management (auth middleware)
 Route::middleware('auth')->group(function () {
