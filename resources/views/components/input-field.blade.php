@@ -15,14 +15,14 @@
             id="{{ $id }}"
             name="{{ $id }}"
             placeholder="{{ $placeholder }}"
-            class="p-2 w-full min-h-16 rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none focus:border-transparent" 
+            class="p-2 min-h-16 rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none" 
         ></textarea>
     @else
         <input 
             id="{{ $id }}"
             name="{{ $id }}"
             placeholder="{{ $placeholder }}"
-            class="p-2 w-full rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none focus:border-transparent"
+            class="p-2 rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none"
         >
     @endif
 </div>
