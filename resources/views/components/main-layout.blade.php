@@ -7,10 +7,10 @@
         <link rel="icon" href="{{ asset("images/logomark.svg") }}" />
         @vite(["resources/css/app.css", "resources/js/app.js"])
     </head>
-    <body class="flex flex-col items-center">
+    <body class="flex min-h-screen flex-col items-center">
         <x-header />
 
-        <main class="w-full max-w-5xl px-4">
+        <main class="w-full max-w-5xl flex-1 px-4 pt-20">
             {{ $slot }}
         </main>
 
