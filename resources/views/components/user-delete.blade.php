@@ -9,8 +9,9 @@
             <p class="text-lg font-bold">It looks like you're trying to delete your account.</p>
             <p>This is a permanent action that cannot be undone. Are you sure you want to delete this account? </p>
         </div>
-    <div class="flex flex-row justify-end gap-1">
-        <x-button variant="secondary">Cancel</x-button>
-        <x-button>Yes, delete my account</x-button>
+        <div class="flex flex-row justify-end gap-1">
+            <x-button variant="secondary">Cancel</x-button>
+            <x-button>Yes, delete my account</x-button>
+        </div>
     </div>
 </div>
