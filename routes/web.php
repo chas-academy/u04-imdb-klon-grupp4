@@ -7,8 +7,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\ReviewController;
-use App\Https\Controllers\Auth\AuthController;
-
+use App\Http\Controllers\RatingController;
+use App\Http\Controllers\Auth\AuthController;
 
 // (GET) Pages
 Route::get('/', function () { return view('home'); });
@@ -23,7 +23,6 @@ Route::get('/top-titles', function () { return view('top-titles'); });
 Route::get('/user', [UserController::class, 'show'])->name('user.show');
 Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist'); // Updated to ReviewController
 
-
 // Manage Reviews
 Route::get('/reviews/create/{movie_id}', [ReviewController::class, 'create'])->name('reviews.create'); // Form to create a review
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store'); // Save a new review
@@ -31,33 +30,31 @@ Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->name('revie
 Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update'); // Update an existing review
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy'); // Delete a review
 
+// Manage Ratings
+Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store'); // Save a new rating
+Route::put('/ratings/{id}', [RatingController::class, 'update'])->name('ratings.update'); // Update an existing rating
+Route::delete('/ratings/{id}', [RatingController::class, 'destroy'])->name('ratings.destroy'); // Delete a rating
 
 // Manage user
 Route::get('/sign-in', [AuthenticatedSessionController::class, 'signIn'])->name('sign-in'); // Updated
 Route::post('/sign-in', [AuthenticatedSessionController::class, 'login'])->name('auth.login');
 Route::post('/log-out', [AuthenticatedSessionController::class, 'logout'])->name('auth.logout');
 
-
 Route::get('/create-account', function () { return view('create-account'); });
 Route::post('/create-account', [RegisteredUserController::class, 'register'])->name('auth.register');
-
 
 Route::get('/delete-account', function () { return view('delete-account'); });
 Route::delete('/delete-account', [UserController::class, 'delete'])->name('user.delete');
 
-
 Route::get('/user-settings', function () { return view('user-settings'); });
 Route::put('/user-settings', [UserController::class, 'updateSettings'])->name('user.updateSettings');
-
 
 Route::get('/change-user-info', function () { return view('change-user-info'); });
 Route::patch('/change-user-info', [UserController::class, 'update'])->name('user.update');
 
-
 // Manage lists
 Route::get('/create-list', function () { return view('create-list'); });
 Route::post('/create-list', [ListMovieUserController::class, 'store'])->name('list.create');
-
 
 // Admin-routes
 Route::delete('/admin-delete-titles', [AdminController::class, 'deleteTitle'])->name('admin.deleteTitle');
@@ -67,13 +64,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
 // Profile management (auth middleware)
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
 });
-
 
 require __DIR__.'/auth.php';
