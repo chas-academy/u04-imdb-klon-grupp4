@@ -9,15 +9,17 @@
             <p>Help us understand the issue. Please select a reason below:</p>
         </div>
 
-    {{-- Checkbox --}} <p><b>Spam:</b> This post is spam.</p>
-    {{-- Checkbox --}} <p><b>Inappropriate:</b> This post contains offensive or inappropriate material.</p>
-    {{-- Checkbox --}} <p><b>Misinformation:</b> This post contains misleading or false information.</p>
-    {{-- Checkbox --}} <p><b>Irrelevant:</b> This post is not relevant to the topic.</p>
-    {{-- Checkbox --}} <p><b>Other.</b></p>
+        {{-- Checkbox --}} <p><b>Spam:</b> This post is spam.</p>
+        {{-- Checkbox --}} <p><b>Inappropriate:</b> This post contains offensive or inappropriate material.</p>
+        {{-- Checkbox --}} <p><b>Misinformation:</b> This post contains misleading or false information.</p>
+        {{-- Checkbox --}} <p><b>Irrelevant:</b> This post is not relevant to the topic.</p>
+        {{-- Checkbox --}} <p><b>Other.</b></p>
 
-    <x-input-field id="flag-post" placeholder="Description" variant="textarea">Additional information (optional):</x-input-field>
-    <div class="flex flex-row justify-end gap-1">
-        <x-button variant="secondary">Cancel</x-button>
-        <x-button>Submit report</x-button>
+        <x-input-field id="flag-post" placeholder="Description" variant="textarea">Additional information (optional):</x-input-field>
+    
+        <div class="flex flex-row justify-end gap-1">
+            <x-button variant="secondary">Cancel</x-button>
+            <x-button>Submit report</x-button>
+        </div>
     </div>
 </div>
