@@ -9,12 +9,20 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\GenreController;
+
+// Genre Routes
+Route::get('/genres', [GenreController::class, 'index'])->name('genres.index'); // Shows all genres with movies
+Route::get('/genres/{id}', [GenreController::class, 'show'])->name('genres.show'); // Shows movies of a specific genre
+Route::post('/genres/{id}/watchlist/{movie_id}', [GenreController::class, 'addToWatchlist']) // Adds a movie to the user's watchlist
+->middleware('auth')
+->name('genres.addToWatchlist');
+Route::get('/sign-in', [AuthenticatedSessionController::class, 'signIn'])->name('sign-in'); // Redirects to sign-in if non-users try to use +watchlist
 
 // (GET) Pages
 Route::get('/', function () { return view('home'); });
 Route::get('/admin', function () { return view('admin'); });
 Route::get('/admin-settings', function () { return view('admin-settings'); });
-Route::get('/genres', [ReviewController::class, 'genres'])->name('genres'); // Updated to use ReviewController
 Route::get('/movies', function () { return view('movies'); });
 Route::get('/ratings', function () { return view('ratings'); });
 Route::get('/recently-viewed', [ReviewController::class, 'recentReviews'])->name('recently-viewed'); // Updated
