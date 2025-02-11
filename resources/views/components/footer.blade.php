@@ -1,8 +1,12 @@
-<footer class="bg-neutral-900 px-28 py-12 flex gap-4 flex-col w-full">
-    <div class="flex flex-row">
-        <a href="/"><x-logo showText />
-    
-        <div class="flex flex-row text-lg font-bold gap-4">
+<footer
+    class="flex w-full flex-col items-center gap-4 bg-neutral-900 p-4 md:px-20"
+>
+    <div
+        class="flex w-full flex-col items-center md:flex-row md:justify-between"
+    >
+        <x-logo showText />
+
+        <div class="flex justify-center sm:gap-4">
             <x-button variant="secondary">
                 <a href="/">Home</a>
             </x-button>
@@ -17,5 +21,5 @@
             </x-button>
         </div>
     </div>
-    <p class="text-xs w-full flex justify-center">© Movie Scout 2025</p>
+    <p class="flex w-full justify-center text-xs">© Movie Scout 2025</p>
 </footer>
