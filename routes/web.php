@@ -7,8 +7,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListMovieUserController;
 use App\Http\Controllers\ReviewController;
-use App\Https\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\AwardController;
+
 
 // Genre Routes
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index'); // Shows all genres with movies
@@ -18,6 +20,18 @@ Route::post('/genres/{id}/watchlist/{movie_id}', [GenreController::class, 'addTo
 ->name('genres.addToWatchlist');
 Route::get('/sign-in', [AuthenticatedSessionController::class, 'signIn'])->name('sign-in'); // Redirects to sign-in if non-users try to use +watchlist
 
+// Award Routes
+Route::get('/awards', [AwardController::class, 'index'])->name('awards.index'); // Show all awards
+Route::get('/awards/{id}', [AwardController::class, 'show'])->name('awards.show'); // Show specific award
+Route::get('/awards/create', [AwardController::class, 'create'])->name('awards.create'); // Form to create an award
+Route::post('/awards', [AwardController::class, 'store'])->name('awards.store'); // Store a new award
+Route::get('/awards/{id}/edit', [AwardController::class, 'edit'])->name('awards.edit'); // Edit an award
+Route::put('/awards/{id}', [AwardController::class, 'update'])->name('awards.update'); // Update an award
+Route::delete('/awards/{id}', [AwardController::class, 'destroy'])->name('awards.destroy'); // Delete an award
+
+// Attach and detach awards to movies
+Route::post('/movies/{movieId}/awards', [AwardController::class, 'attachToMovie'])->name('movies.awards.attach'); // Attach an award to a movie
+Route::delete('/movies/{movieId}/awards', [AwardController::class, 'detachFromMovie'])->name('movies.awards.detach'); // Detach an award from a movie
 
 // (GET) Pages
 Route::get('/', function () { return view('home'); });
