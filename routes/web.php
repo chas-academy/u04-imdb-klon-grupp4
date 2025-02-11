@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -11,11 +12,12 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AwardController;
+use App\Http\Controllers\WatchlistController;
 
 // Genre Routes
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
 Route::get('/genres/{id}', [GenreController::class, 'show'])->name('genres.show');
-Route::post('/genres/{id}/watchlist/{movie_id}', [GenreController::class, 'addToWatchlist'])
+Route::post('/genres/{id}/watchlist/{movie_id}', [WatchlistController::class, 'store']) // Changed to watchlistcontroller
     ->middleware('auth')
     ->name('genres.addToWatchlist');
 
@@ -43,7 +45,13 @@ Route::get('/recently-viewed', [ReviewController::class, 'recentReviews'])->name
 Route::get('/specific-movie/{id}', [ReviewController::class, 'showMovieReviews'])->name('specific-movie');
 Route::get('/top-titles', function () { return view('top-titles'); });
 Route::get('/user', [UserController::class, 'show'])->name('user.show');
-Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist');
+
+// Watchlist Routes
+Route::middleware('auth')->group(function () {
+    Route::get('/watchlist', [WatchlistController::class, 'index'])->name('watchlist.index');
+    Route::post('/watchlist/add', [WatchlistController::class, 'store'])->name('watchlist.add');
+    Route::delete('/watchlist/remove/{movie}', [WatchlistController::class, 'destroy'])->name('watchlist.remove'); 
+});
 
 // Manage Reviews
 Route::get('/reviews/create/{movie_id}', [ReviewController::class, 'create'])->name('reviews.create');
