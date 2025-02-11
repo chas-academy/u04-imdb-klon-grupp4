@@ -7,7 +7,7 @@
 @if ($link)
     <a
         href="/"
-        class="text-sun-400 flex w-full items-center gap-2 text-2xl font-bold text-nowrap"
+        class="flex items-center gap-2 text-nowrap text-2xl font-bold text-sun-400"
     >
         <img src="{{ asset("images/logomark.svg") }}" alt="Movie Scout" />
 
@@ -18,7 +18,7 @@
         @endif
     </a>
 @else
-    <div class="text-sun-400 flex w-full gap-2 text-2xl font-bold text-nowrap">
+    <div class="flex gap-2 text-nowrap text-2xl font-bold text-sun-400">
         <img src="{{ asset("images/logomark.svg") }}" alt="Movie Scout" />
 
         @if ($showText)
