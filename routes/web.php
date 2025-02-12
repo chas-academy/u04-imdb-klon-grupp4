@@ -39,7 +39,7 @@ Route::delete('/movies/{movieId}/awards', [AwardController::class, 'detachFromMo
 // Pages
 Route::get('/', function () { return view('home'); });
 Route::get('/admin', function () { return view('admin'); });
-Route::get('/movies', function () { return view('movies'); });
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
 Route::get('/ratings', function () { return view('ratings'); });
 Route::get('/recently-viewed', [ReviewController::class, 'recentReviews'])->name('recently-viewed');
 Route::get('/specific-movie/{id}', [ReviewController::class, 'showMovieReviews'])->name('specific-movie');
