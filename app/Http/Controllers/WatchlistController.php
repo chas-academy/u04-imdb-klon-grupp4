@@ -3,71 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\MovieList;
-use App\Models\Movie;
-use Illuminate\Support\Facades\Auth;
 
 class WatchlistController extends Controller
 {
     /**
-     * Display the user's watchlist.
+     * Display a listing of the resource.
      */
     public function index()
     {
-        // Get the authenticated user's watchlist
-        $watchlist = MovieList::where('name', 'watchlist')
-            ->whereHas('users', function ($query) {
-                $query->where('id', Auth::id());
-            })
-            ->with('movies')
-            ->first();
-
-        // If the user doesn't have a watchlist, return an empty array
-        $movies = $watchlist ? $watchlist->movies : [];
-
-        return view('watchlist.index', compact('movies'));
+        //
     }
 
     /**
-     * Add a movie to the user's watchlist.
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $user = Auth::user();
-
-        // Find or create the user's watchlist
-        $watchlist = MovieList::firstOrCreate(
-            ['name' => 'watchlist'],
-            ['user_id' => $user->id]
-        );
-
-        // Attach the movie to the watchlist if it's not already added
-        if (!$watchlist->movies()->where('movie_id', $request->movie_id)->exists()) {
-            $watchlist->movies()->attach($request->movie_id);
-        }
-
-        return redirect()->back()->with('success', 'Movie added to your watchlist.');
+        //
     }
 
     /**
-     * Remove a movie from the user's watchlist.
+     * Display the specified resource.
      */
-    public function destroy($movieId)
+    public function show(string $id)
     {
-        $user = Auth::user();
-        
-        // Get the user's watchlist
-        $watchlist = MovieList::where('name', 'watchlist')
-            ->whereHas('users', function ($query) use ($user) {
-                $query->where('id', $user->id);
-            })
-            ->first();
+        //
+    }
 
-        // Detach the movie if it exists in the watchlist
-        if ($watchlist) {
-            $watchlist->movies()->detach($movieId);
-        }
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-        return redirect()->back()->with('success', 'Movie removed from your watchlist.');
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }
