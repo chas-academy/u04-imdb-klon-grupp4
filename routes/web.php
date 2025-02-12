@@ -42,7 +42,7 @@ Route::get('/ratings', function () { return view('ratings'); });
 Route::get('/recently-viewed', [ReviewController::class, 'recentReviews'])->name('recently-viewed');
 Route::get('/specific-movie/{id}', [ReviewController::class, 'showMovieReviews'])->name('specific-movie');
 Route::get('/top-titles', function () { return view('top-titles'); });
-Route::get('/user', [UserController::class, 'show'])->name('user.show');
+Route::get('/user', [UserController::class, 'show'])->name('users.index');
 Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist');
 
 // Manage Reviews
@@ -72,11 +72,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
   
     // User Management
     Route::get('/users', [AdminController::class, 'indexUsers'])->name('users.index');
-    Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create');
+    Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create-account');
     Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
     Route::get('/users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');
     Route::put('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
-    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.destroy');
+    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.delete-account');
 
     // Movie Management
     Route::get('/movies', [AdminController::class, 'indexMovies'])->name('movies.index');
@@ -105,5 +105,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Show login form
+Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('users.log-in');
+Route::post('/login', [AuthenticatedSessionController::class, 'login']);
+Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
+
+
 
 require __DIR__.'/auth.php';
