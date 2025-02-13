@@ -45,7 +45,7 @@
             </p>
         </div>
 
-        <x-button class="self-end">Create account</x-button>
+        <x-button class="sm:self-end">Create account</x-button>
     </form>
 
     <div class="flex gap-4">
