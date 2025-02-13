@@ -1,14 +1,11 @@
 <?php
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListMovieUserController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RatingController;
-
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AwardController;
 
@@ -18,7 +15,6 @@ Route::get('/genres/{id}', [GenreController::class, 'show'])->name('genres.show'
 Route::post('/genres/{id}/watchlist/{movie_id}', [GenreController::class, 'addToWatchlist'])
     ->middleware('auth')
     ->name('genres.addToWatchlist');
-
 
 // Award Routes
 Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
@@ -34,13 +30,28 @@ Route::post('/movies/{movieId}/awards', [AwardController::class, 'attachToMovie'
 Route::delete('/movies/{movieId}/awards', [AwardController::class, 'detachFromMovie'])->name('movies.awards.detach');
 
 // Pages
-Route::get('/', function () { return view('home'); });
-Route::get('/admin', function () { return view('admin.index'); });
-Route::get('/movies', function () { return view('movies.show'); });
-Route::get('/ratings', function () { return view('ratings'); });
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::get('/movies', function () {
+    return view('movies.show');
+});
+
+Route::get('/ratings', function () {
+    return view('ratings');
+});
+
 Route::get('/recently-viewed', [ReviewController::class, 'recentReviews'])->name('recently-viewed');
 Route::get('/specific-movie/{id}', [ReviewController::class, 'showMovieReviews'])->name('specific-movie');
-Route::get('/top-titles', function () { return view('top-titles'); });
+Route::get('/top-titles', function () {
+    return view('top-titles');
+});
+
 Route::get('/user', [UserController::class, 'show'])->name('users.index');
 Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist');
 
@@ -68,7 +79,7 @@ Route::middleware('auth')->group(function () {
 
 // Admin Routes
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
-  
+
     // User Management
     Route::get('/users', [AdminController::class, 'indexUsers'])->name('users.index');
     Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create-account');
@@ -105,12 +116,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
 });
 
-// Show login form
-Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('users.log-in');
-Route::post('/login', [AuthenticatedSessionController::class, 'login']);
-Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
-
-
-
-
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
