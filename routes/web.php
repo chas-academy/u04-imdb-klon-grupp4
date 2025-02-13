@@ -8,7 +8,7 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ListMovieUserController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RatingController;
-use App\Http\Controllers\Auth\AuthController;
+
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AwardController;
 
@@ -19,7 +19,6 @@ Route::post('/genres/{id}/watchlist/{movie_id}', [GenreController::class, 'addTo
     ->middleware('auth')
     ->name('genres.addToWatchlist');
 
-Route::get('/sign-in', [AuthenticatedSessionController::class, 'signIn'])->name('sign-in');
 
 // Award Routes
 Route::get('/awards', [AwardController::class, 'index'])->name('awards.index');
@@ -107,9 +106,10 @@ Route::middleware('auth')->group(function () {
 });
 
 // Show login form
-Route::get('/login', [AuthenticatedSessionController::class, 'showLoginForm'])->name('users.log-in');
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('users.log-in');
 Route::post('/login', [AuthenticatedSessionController::class, 'login']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'logout'])->name('logout');
+
 
 
 
