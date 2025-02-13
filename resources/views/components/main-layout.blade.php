@@ -10,7 +10,9 @@
     <body class="flex flex-col items-center">
         <x-header />
 
-        <main class="min-h-screen w-full max-w-5xl flex-1 px-4 pt-20">
+        <main
+            {{ $attributes->class("md:pt-50 min-h-screen w-full max-w-5xl flex-1 px-4 pt-24 md:pb-16") }}
+        >
             {{ $slot }}
         </main>
 

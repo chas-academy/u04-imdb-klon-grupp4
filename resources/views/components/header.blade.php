@@ -14,6 +14,6 @@
             <a href="/">Watchlist</a>
         </x-button>
 
-        <x-button>Sign in</x-button>
+        <x-button><a href="/register">Sign up</a></x-button>
     </nav>
 </header>
