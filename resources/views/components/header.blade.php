@@ -1,6 +1,6 @@
 <header
     x-data="{ open: false }"
-    class="fixed z-40 flex size-20 w-full justify-between bg-neutral-900 p-4"
+    class="fixed z-40 flex h-20 w-full justify-between bg-neutral-900 p-4"
 >
     <x-logo showText />
 
