@@ -1,6 +1,6 @@
 @props ([
-    "title" => "",
-    "description" => "",
+    "title",
+    "description",
     "movies" => [],
 ])    
 

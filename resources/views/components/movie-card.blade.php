@@ -1,8 +1,8 @@
 @props([
-    "title" => "",
-    "year" => "",
-    "length" => "",
-    "description" => "",
+    "title",
+    "year",
+    "length",
+    "description",
     "movie",
 ])
 
