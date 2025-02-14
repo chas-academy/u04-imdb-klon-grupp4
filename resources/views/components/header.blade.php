@@ -19,7 +19,7 @@
             </x-button>
         </div>
 
-        <x-button><a href="/register">Sign up</a></x-button>
+        <x-button><a href="{{ route("register") }}">Sign up</a></x-button>
 
         <button @click="open = true" class="size-6 md:hidden">
             <x-lucide-menu />
@@ -34,10 +34,10 @@
             <x-lucide-x class="absolute right-4 top-4 size-6" />
         </button>
 
-        <a href="/">Home</a>
+        <a href="{{ route("home") }}">Home</a>
         <a href="/">Genres</a>
         <a href="/">Watchlist</a>
         {{-- change to profile if signed in --}}
-        <a href="/">Sign in</a>
+        <a href="{{ route("register") }}">Sign in</a>
     </div>
 </header>
