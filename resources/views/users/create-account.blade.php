@@ -51,6 +51,8 @@
     <div class="flex gap-4">
         <p>Already have an account?</p>
 
-        <a href="/" class="text-sky-500 hover:underline">Log in!</a>
+        <a href="{{ route("login") }}" class="text-sky-500 hover:underline">
+            Log in!
+        </a>
     </div>
 </x-main-layout>
