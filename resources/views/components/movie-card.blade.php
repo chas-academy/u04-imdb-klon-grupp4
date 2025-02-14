@@ -1,13 +1,13 @@
 @props([
-    "title",
-    "year",
-    "length",
-    "description",
+    "title" => "",
+    "year" => "",
+    "length" => "",
+    "description" => "",
     "movie",
 ])
 
 @php
-    $image = $movie["image"];
+    $image = $movie["image"] ?? null;
 @endphp
 
 <x-base-card class="m-4 w-full h-auto">
