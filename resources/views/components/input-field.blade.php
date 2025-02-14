@@ -21,6 +21,7 @@
         <input 
             id="{{ $id }}"
             name="{{ $id }}"
+            type="{{ $type }}"
             placeholder="{{ $placeholder }}"
             class="p-2 rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none"
         >
