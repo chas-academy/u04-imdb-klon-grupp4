@@ -3,7 +3,7 @@
 
     <form
         method="post"
-        action="{{ route("register") }}"
+        action="{{ route("login") }}"
         class="flex w-full flex-col gap-4"
     >
         @csrf
@@ -24,13 +24,15 @@
             </x-input-field>
             <p class="text-red-500">{{ $errors->first("password") }}</p>
         </div>
-
+        <p class="text-red-500">{{ $errors->first("credentials") }}</p>
         <x-button class="sm:self-end">Log in</x-button>
     </form>
 
     <div class="flex gap-4">
         <p>Don't have an account yet?</p>
 
-        <a href="/" class="text-sky-500 hover:underline">Sign up!</a>
+        <a href="{{ route("register") }}" class="text-sky-500 hover:underline">
+            Sign up!
+        </a>
     </div>
 </x-main-layout>
