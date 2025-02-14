@@ -1,22 +1,22 @@
 @props([
-    "title" => "",
-    "year" => "",
-    "length" => "",
-    "description" => "",
-    "movie" => [],
+    "title",
+    "year",
+    "length",
+    "description",
+    "movie",
 ])
 
 @php
-    $image = $movie["image"] ?? asset("images/default.jpg");
+    $image = $movie["image"];
 @endphp
 
 <x-base-card class="m-4 w-full h-auto">
     <div class="flex gap-4">
-        <img class="w-16 h-24 object-cover rounded-lg" src="{{ $image }}" alt="{{ $title }}">
+        <img class="w-16 h-24 object-cover" src="{{ $image }}" alt="{{ $title }}">
 
         <div class="flex flex-col gap-1">
             <div class="flex justify-between">
-                <h3 class="lext-lg font-bold">{{ $title }}</h3>
+                <h3 class="text-lg font-bold">{{ $title }}</h3>
                 {{-- Bookmark here --}}
             </div>
             <div class="flex gap-2">
