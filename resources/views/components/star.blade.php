@@ -1,40 +1,17 @@
-<!--
+@props([
 
-16x16, 24x24, 32x32, 32x32 ifylld
+'rating' => null,
+"filled"
 
--->
+])
+<div class="flex items-center gap-2">
+   @if(empty($rating))
+       <div class="text-gray-600">Not rated</div> <!-- Display "Not rated" when there is no rating -->
+   @else
+       <div class="text-yellow-400">{{$rating}}</div> <!-- Display numeric rating -->
+   @endif
 
-<!-- @props(['size' => 'false', ]) -->
-
-    <!--
-    <h1 class="text-red-500">hello world</h1>
-    <x-lucide-star color="#ebbe00" width="16" height="16"/>
-    <x-lucide-star color="#ebbe00" width="24" height="24"/>
-    <x-lucide-star color="#ebbe00" width="32" height="32" fill="none"/>
-    <x-lucide-star color="#ebbe00" width="32" height="32" fill="#ebbe00"/>
--->
-
-
-   <!-- <x-lucide-star class="w-24 h-24 bg-yellow-400"/> -->
-
-<div>
-    @props(['size', 'filled', 'rating' => ''])
-    <div class="flex">
-    @if($rating === '')
-        <div class="text-gray-600 text-6xl pr-2">Not rated</div>
-        @if($filled)
-            <x-lucide-star {{ $attributes->merge(['class' => 'w-'.$size.' h-'.$size.' text-gray-600 fill-gray-600']) }} />
-        @else
-            <x-lucide-star {{ $attributes->merge(['class' => 'w-'.$size.' h-'.$size.' text-gray-600 fill-none']) }} />
-        @endif
-    @else
-            <div class="text-yellow-400 text-6xl pr-2">{{$rating}}</div>
-            @if($filled)
-            <x-lucide-star {{ $attributes->merge(['class' => 'w-'.$size.' h-'.$size.' text-yellow-400 fill-yellow-400']) }} />
-            @else
-            <x-lucide-star {{ $attributes->merge(['class' => 'w-'.$size.' h-'.$size.' text-yellow-400 fill-none']) }} />
-                @endif    
-    @endif
-</div>
-
+<x-lucide-star {{ $attributes->merge([
+'class' => 'w-4 h-4 text-yellow-400 ' . ($filled ? 'fill-yellow-400' : 'fill-none')
+]) }} />
 </div>
