@@ -7,13 +7,8 @@ use App\Models\Director;
 
 class DirectorSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        // Create 5 directors
-        Director::factory()->count(5)->create();
+        Director::factory()->count(10)->create(); // Create 10 directors
     }
 }
-
