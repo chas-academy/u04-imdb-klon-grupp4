@@ -7,11 +7,9 @@ use App\Models\Actor;
 
 class ActorSeeder extends Seeder
 {
-    
-    public function run(): void
+    public function run()
     {
-        // Create 10 actors
-        Actor::factory()->count(10)->create();
+        Actor::factory()->count(10)->create(); // This will create 10 actors
     }
 }
 
