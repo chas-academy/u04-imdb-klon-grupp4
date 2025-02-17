@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -9,12 +10,12 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-//USER CRUD
+    //USER CRUD
     // Display all users
     public function indexUsers()
     {
         $users = User::all();
-        return view('admin.users.index', compact('users'));
+        return view('admin.admin-users-index', compact('users'));
     }
 
     // Show the form to create a new user
@@ -71,7 +72,7 @@ class AdminController extends Controller
         $user->delete();
         return redirect()->route('admin.users.index');
     }
-//Movies CRUD
+    //Movies CRUD
     // Display all movies
     public function indexMovies()
     {
@@ -137,62 +138,62 @@ class AdminController extends Controller
         $movie->delete();
         return redirect()->route('admin.movies.index');
     }
-//REVIEW CRUD 
-public function indexReviews()
-{
-    //Show all Reviews
-    $reviews = Review::all();
-    return view('admin.reviews.index', compact('reviews'));
-}
+    //REVIEW CRUD 
+    public function indexReviews()
+    {
+        //Show all Reviews
+        $reviews = Review::all();
+        return view('admin.reviews.index', compact('reviews'));
+    }
 
-public function createReview()
-{
-    //Create review
-    $movies = Movie::all();
-    $users = User::all();
-    return view('admin.reviews.create', compact('movies', 'users'));
-}
+    public function createReview()
+    {
+        //Create review
+        $movies = Movie::all();
+        $users = User::all();
+        return view('admin.reviews.create', compact('movies', 'users'));
+    }
 
-public function storeReview(Request $request)
-{
-    //Store created review in storage
-    $validated = $request->validate([
-        'movie_id' => 'required|exists:movies,id',
-        'user_id' => 'required|exists:users,id',
-        'rating' => 'required|numeric|between:0,10',
-        'comment' => 'required|string|max:500',
-    ]);
+    public function storeReview(Request $request)
+    {
+        //Store created review in storage
+        $validated = $request->validate([
+            'movie_id' => 'required|exists:movies,id',
+            'user_id' => 'required|exists:users,id',
+            'rating' => 'required|numeric|between:0,10',
+            'comment' => 'required|string|max:500',
+        ]);
 
-    Review::create($validated);
-    return redirect()->route('admin.reviews.index');
-}
+        Review::create($validated);
+        return redirect()->route('admin.reviews.index');
+    }
 
-public function editReview(Review $review)
-{
-    //Edit Review
-    $movies = Movie::all();
-    $users = User::all();
-    return view('admin.reviews.edit', compact('review', 'movies', 'users'));
-}
+    public function editReview(Review $review)
+    {
+        //Edit Review
+        $movies = Movie::all();
+        $users = User::all();
+        return view('admin.reviews.edit', compact('review', 'movies', 'users'));
+    }
 
-public function updateReview(Request $request, Review $review)
-{
-    //Update edited review
-    $validated = $request->validate([
-        'movie_id' => 'required|exists:movies,id',
-        'user_id' => 'required|exists:users,id',
-        'rating' => 'required|numeric|between:0,10',
-        'comment' => 'required|string|max:500',
-    ]);
+    public function updateReview(Request $request, Review $review)
+    {
+        //Update edited review
+        $validated = $request->validate([
+            'movie_id' => 'required|exists:movies,id',
+            'user_id' => 'required|exists:users,id',
+            'rating' => 'required|numeric|between:0,10',
+            'comment' => 'required|string|max:500',
+        ]);
 
-    $review->update($validated);
-    return redirect()->route('admin.reviews.index');
-}
+        $review->update($validated);
+        return redirect()->route('admin.reviews.index');
+    }
 
-public function destroyReview(Review $review)
-{ 
-    //Destroy/delete Review
-    $review->delete();
-    return redirect()->route('admin.reviews.index');
-}
+    public function destroyReview(Review $review)
+    {
+        //Destroy/delete Review
+        $review->delete();
+        return redirect()->route('admin.reviews.index');
+    }
 }
