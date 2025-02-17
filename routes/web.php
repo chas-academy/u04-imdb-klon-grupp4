@@ -34,10 +34,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-
 Route::get('/movies', function () {
     return view('movies.show');
 });
@@ -78,7 +74,12 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Routes
-Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+// TODO: add middlewares when admin login is working
+// middleware(['auth', 'admin'])->
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
 
     // User Management
     Route::get('/users', [AdminController::class, 'indexUsers'])->name('users.index');
