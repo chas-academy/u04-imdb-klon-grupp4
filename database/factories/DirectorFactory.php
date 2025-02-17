@@ -9,10 +9,13 @@ class DirectorFactory extends Factory
 {
     protected $model = Director::class;
 
-    public function definition(): array
+    public function definition()
     {
         return [
-            'name' => $this->faker->name, 
+            'firstname' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'birthdate' => $this->faker->date(),
+            'nationality' => $this->faker->country(),
         ];
     }
 }
