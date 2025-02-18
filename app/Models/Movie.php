@@ -7,6 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'release_date',
+        'plot',
+        'poster',
+        'duration',
+    ];
+
+    protected $casts = [
+        'release_date' => 'date',
+    ];
 
     public function genres()
     {
