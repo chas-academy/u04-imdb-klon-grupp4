@@ -2,7 +2,7 @@
     <h1 class="text-center text-2xl font-bold">Log in</h1>
 
     <form
-        method="post"
+        method="POST"
         action="{{ route("login") }}"
         class="flex w-full flex-col gap-4"
     >

@@ -8,6 +8,8 @@
         @vite(["resources/css/app.css", "resources/js/app.js"])
     </head>
     <body class="flex">
+        <x-aside />
+
         <main
             {{ $attributes->class("md:pt-50 min-h-screen w-full max-w-5xl ") }}
         >
