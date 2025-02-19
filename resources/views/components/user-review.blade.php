@@ -1,11 +1,11 @@
 @props([
-    "username" => "Username",
-    "title" => "Title of the review",
-    "content" => null,
-    "score" => "X/10",
+    "username",
+    "title",
+    "content",
+    "score",
 ])
 
-<x-base-card class="hover:ring-2 hover:ring-neutral-700 !important transition">
+<x-base-card>
     <div>
         <x-avatar size="sm" />
     </div>
