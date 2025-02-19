@@ -36,5 +36,10 @@ class User extends Authenticatable
     public function movieLists()
     {
         return $this->belongsToMany(MovieList::class, 'lists', 'user_id', 'list_id')->withTimestamps();
+    } 
+    public function review()
+    {
+        return $this->hasMany(Review::class);
     }
+
 }

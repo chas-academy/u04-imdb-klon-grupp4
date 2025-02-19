@@ -38,4 +38,9 @@ class Movie extends Model
     {
         return $this->belongsToMany(MovieList::class, 'list_movie', 'movie_id', 'list_id')->withTimestamps();
     }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 }
