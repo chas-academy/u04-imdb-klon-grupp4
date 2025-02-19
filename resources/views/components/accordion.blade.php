@@ -14,9 +14,9 @@
             <x-lucide-chevron-down class="size-6" />
         </button>
 
-        <div x-show="open" class="flex flex-col pl-8">
+        <div x-show="open" class="flex flex-col gap-2 pl-8">
             @foreach ($subcategories as $subcategory)
-                <a href="{{ $subcategory["href"] }}">
+                <a href="{{ $subcategory["href"] }}" class="hover:underline">
                     {{ $subcategory["label"] }}
                 </a>
             @endforeach
