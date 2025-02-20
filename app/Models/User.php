@@ -15,6 +15,7 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
+        
     ];
 
 
@@ -28,7 +29,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
     ];
-  
+
+    /**
+     * Define the many-to-many relationship with Movie.
+     */
     public function movies()
     {
         return $this->belongsToMany(Movie::class, 'user_movie', 'user_id', 'movie_id')->withTimestamps();
