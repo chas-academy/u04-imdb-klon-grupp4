@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,8 +9,11 @@ class Genre extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
+    // Relations
     public function movies()
     {
-        return $this->belongsToMany(Movie::class, 'genre_movie', 'genre_id', 'movie_id')->withTimestamps();
+        return $this->belongsToMany(Movie::class);
     }
 }

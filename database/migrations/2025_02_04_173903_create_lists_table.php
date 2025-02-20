@@ -13,12 +13,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('lists', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade'); // Add user_id foreign key
-            $table->string('title');
-            $table->timestamps();
-
+            $table->id(); // Skapar en primärnyckel
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->string('title'); 
+            $table->timestamps(); 
         });
+        
     }
 
     /**

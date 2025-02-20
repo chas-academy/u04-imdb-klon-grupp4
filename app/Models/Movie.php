@@ -7,6 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'title',
+        'release_date',
+        'plot',
+        'poster',
+        'duration',
+    ];
+
+    protected $casts = [
+        'release_date' => 'date',
+    ];
 
     public function genres()
     {
@@ -27,4 +38,9 @@ class Movie extends Model
     {
         return $this->belongsToMany(MovieList::class, 'list_movie', 'movie_id', 'list_id')->withTimestamps();
     }
+    public function review()
+    {
+        return $this->hasMany(Review::class);
+    }
+
 }

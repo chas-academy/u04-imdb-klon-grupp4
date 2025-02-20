@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('plot');
             $table->string('poster');
             $table->string('duration');
-            $table->foreignIdFor(Award::class)->constrained()->onDelete('cascade'); // Add award_id foreign key
+            /**$table->foreignIdFor(Award::class)->constrained()->onDelete('cascade'); // Add award_id foreign key*/
             $table->timestamps();
             
         });
