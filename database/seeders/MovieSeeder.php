@@ -20,10 +20,10 @@ class MovieSeeder extends Seeder
         $genres = Genre::all();
         $actors = Actor::all();
         $directors = Director::all();
-        $awards = Award::all();
+       // $awards = Award::all();
 
         // Create 10 movies using the factory
-        Movie::factory()->count(10)->create()->each(function ($movie) use ($genres, $actors, $directors, $awards) {
+        Movie::factory()->count(10)->create()->each(function ($movie) use ($genres, $actors, $directors) {
             // Attach between 1 and 3 random genres if any exist
             if ($genres->isNotEmpty()) {
                 $movie->genres()->attach(
@@ -45,12 +45,7 @@ class MovieSeeder extends Seeder
                 );
             }
 
-            // Attach between 1 and 2 random awards if any exist
-            if ($awards->isNotEmpty()) {
-                $movie->awards()->attach(
-                    $awards->random(rand(1, 2))->pluck('id')->toArray()
-                );
-            }
+            
         });
     }
 }

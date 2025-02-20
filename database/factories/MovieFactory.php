@@ -12,11 +12,13 @@ class MovieFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(3),         
-            'release_year' => $this->faker->year,           
-            'description' => $this->faker->paragraph,
-            
+            'title' => $this->faker->sentence(3),
+            'release_date' => $this->faker->year,
+            'plot' => $this->faker->paragraph,
+            'poster' => 'default-poster.jpg',
+            'duration' => $this->faker->numberBetween(80, 100) . ' min',
+
+
         ];
     }
 }
-

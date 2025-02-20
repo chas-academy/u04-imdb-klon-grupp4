@@ -1,17 +1,18 @@
 <?php
 
-namespace Database\Seeders;
+//namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use App\Models\Award;
+//use Illuminate\Database\Seeder;
+//use App\Models\Award;
 
-class AwardSeeder extends Seeder
+//class AwardSeeder extends Seeder
 {
     
-    public function run(): void
+   // public function run(): void
     {
        
-        Award::factory()->count(5)->create();
+     //   Award::factory()->count(5)->create();
     }
 }
+
 

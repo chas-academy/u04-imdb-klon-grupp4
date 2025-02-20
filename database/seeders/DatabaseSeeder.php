@@ -17,13 +17,14 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
             ActorSeeder::class,
             DirectorSeeder::class,
-            AwardSeeder::class, // if needed for movies or other parts of your app
+           // AwardSeeder::class, // if needed for movies or other parts of your app
             MovieSeeder::class,
+            UserSeeder::class,
         ]);
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => fake()->unique()->safeEmail(),
+            'username' => fake()->unique()->userName(),
         ]);
     }
     
