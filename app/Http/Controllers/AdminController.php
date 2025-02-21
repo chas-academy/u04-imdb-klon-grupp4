@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Movie;
 use App\Models\Review;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -76,8 +78,10 @@ class AdminController extends Controller
     // Display all movies
     public function indexMovies()
     {
-        $movies = Movie::all();
-        return view('admin.movies.index', compact('movies'));
+        $movies = Movie::latest()->select('id', 'title')->take(12)->get();
+        $allMovies = Movie::latest()->select('id', 'title')->get();
+
+        return view('admin.admin-movies-index', compact('movies', 'allMovies'));
     }
 
     // Show the form to create a new movie
@@ -109,8 +113,10 @@ class AdminController extends Controller
     // Show the form to edit an existing movie
     public function editMovie(Movie $movie)
     {
-        return view('admin.movies.edit', compact('movie'));
+
+        return view('admin.admin-movies-edit', compact('movie'));
     }
+
 
     // Update an existing movie
     public function updateMovie(Request $request, Movie $movie)
@@ -135,9 +141,26 @@ class AdminController extends Controller
     // Delete a movie
     public function destroyMovie(Movie $movie)
     {
-        $movie->delete();
-        return redirect()->route('admin.movies.index');
+        try {
+            $user = Auth::user();
+
+
+            if (! $user || $user->is_admin !== true) {
+                throw new Exception('You are not allowed to delete this movie!');
+            }
+
+
+            $movie->delete();
+
+
+            return redirect()->route('admin.movies.index');
+        } catch (Exception $e) {
+            return redirect()
+                ->back()
+                ->withErrors('Something went wrong with deleting the movie!', 'deleteMovie');
+        }
     }
+
     //REVIEW CRUD 
     public function indexReviews()
     {
