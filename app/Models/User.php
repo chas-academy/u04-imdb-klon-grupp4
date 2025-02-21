@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -15,7 +16,8 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
-        
+        'display_name',
+        'profile_image',
     ];
 
 
@@ -30,20 +32,17 @@ class User extends Authenticatable
         'is_admin' => 'boolean',
     ];
 
-    /**
-     * Define the many-to-many relationship with Movie.
-     */
-    public function movies()
-    {
-        return $this->belongsToMany(Movie::class, 'user_movie', 'user_id', 'movie_id')->withTimestamps();
-    }
-    public function movieLists()
-    {
-        return $this->belongsToMany(MovieList::class, 'lists', 'user_id', 'list_id')->withTimestamps();
-    } 
-    public function review()
+
+
+      // Relations
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
 
+    public function lists()
+    {
+        return $this->hasMany(MovieList::class);
+    }
+     
 }
