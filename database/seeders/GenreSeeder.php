@@ -7,10 +7,30 @@ use App\Models\Genre;
 
 class GenreSeeder extends Seeder
 {
-    
     public function run(): void
     {
-        
-        Genre::factory()->count(5)->create();
+        $genres = [
+            "comedy",
+            "fantasy",
+            "science fiction",
+            "crime",
+            "mystery",
+            "drama",
+            "horror",
+            "action",
+            "documentary",
+            "historical",
+            "western",
+            "film noir",
+            "thriller",
+            "romance",
+            "animation",
+            "musical",
+            "adventure"
+        ];
+
+        foreach ($genres as $genre) {
+            Genre::create(["name" => $genre]);
+        }
     }
 }
