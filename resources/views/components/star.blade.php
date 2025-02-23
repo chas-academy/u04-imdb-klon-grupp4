@@ -1,8 +1,5 @@
 @props([
-
-'rating' => null,
 "filled"
-
 ])
 <div class="flex items-center gap-2">
    @if(empty($rating))
