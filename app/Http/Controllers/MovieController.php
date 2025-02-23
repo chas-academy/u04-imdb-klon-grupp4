@@ -1,8 +1,8 @@
 <?php
 namespace app\Http\Controllers;
 
-use app\Models\movie;
-use app\Models\genre;
+use App\Models\Movie;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
