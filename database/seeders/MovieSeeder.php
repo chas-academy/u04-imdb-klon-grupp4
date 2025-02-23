@@ -22,6 +22,9 @@ class MovieSeeder extends Seeder
         $directors = Director::all();
        // $awards = Award::all();
 
+       // Get all images from the posters folder
+       $images = glob(public_path('images/posters/*'));
+
         // Create 10 movies using the factory
         Movie::factory()->count(10)->create()->each(function ($movie) use ($genres, $actors, $directors) {
             // Attach between 1 and 3 random genres if any exist
@@ -45,7 +48,15 @@ class MovieSeeder extends Seeder
                 );
             }
 
-            
+            // Assign a random image from the posters folder
+            if (!empty($images)) {
+                // Get a random image from the array and assign it to the movie's poster
+                $poster = $images[array_rand($images)];
+                $movie->poster = asset('images/posters/' . basename($poster));
+            }
+
+            // Save the movie with the random poster
+            $movie->save();
         });
     }
 }
