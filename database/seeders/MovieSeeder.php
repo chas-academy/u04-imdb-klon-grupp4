@@ -20,7 +20,7 @@ class MovieSeeder extends Seeder
         $genres = Genre::all();
         $actors = Actor::all();
         $directors = Director::all();
-       // $awards = Award::all();
+        // $awards = Award::all();
 
        // Get all images from the posters folder
        $images = glob(public_path('images/posters/*'));
@@ -60,4 +60,3 @@ class MovieSeeder extends Seeder
         });
     }
 }
-
