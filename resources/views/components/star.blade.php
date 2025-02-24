@@ -1,5 +1,5 @@
 @props([
-"filled"
+"filled" => false
 ])
  
 <x-lucide-star {{ $attributes->merge([
