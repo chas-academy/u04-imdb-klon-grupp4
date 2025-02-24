@@ -25,9 +25,6 @@ class MovieSeeder extends Seeder
        // Get all images from the posters folder
        $images = glob(public_path('images/posters/*'));
 
-       // Get all images from the posters folder
-       $images = glob(public_path('images/posters/*'));
-
         // Create 50 movies using the factory
         Movie::factory()->count(50)->create()->each(function ($movie) use ($genres, $actors, $directors) {
             // Attach between 1 and 3 random genres if any exist
