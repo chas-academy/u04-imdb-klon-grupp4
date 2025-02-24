@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Director extends Model
 {
     use HasFactory;
@@ -20,6 +21,6 @@ class Director extends Model
     // Relations
     public function movies()
     {
-        return $this->belongsToMany(Movie::class);
+        return $this->belongsToMany(Movie::class, 'director_movie' , 'director_id', 'movie_id');
     }
 }
