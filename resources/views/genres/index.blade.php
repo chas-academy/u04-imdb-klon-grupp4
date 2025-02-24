@@ -15,7 +15,7 @@
         @foreach ($genres as $genre)
             <div class="flex flex-col gap-2">
                 <x-forward-page href="{{ route('genres.show', $genre->id) }}" page="{{ ucfirst($genre->name) }}"/>
-                    <div class="flex flex-row gap-4 overflow-x-auto">
+                    <div class="grid grid-flow-col gap-4 overflow-x-auto">
                     @foreach ($genre->movies->take(7) as $movie)
                         <x-movie title="{{ $movie->title }}" poster="{{ $movie->poster }}" />
                     @endforeach
