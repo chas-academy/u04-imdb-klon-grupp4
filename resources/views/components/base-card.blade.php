@@ -1,3 +1,10 @@
-<div class="flex gap-4 rounded-lg bg-neutral-900 p-4">
+@props([
+    "href" => "#",
+])
+
+<a
+    href="{{ url($href) }}"
+    {{ $attributes->class("flex rounded-lg bg-neutral-900 p-4") }}
+>
     {{ $slot }}
-</div>
+</a>
