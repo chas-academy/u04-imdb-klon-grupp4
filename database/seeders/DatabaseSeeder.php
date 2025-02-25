@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             // AwardSeeder::class, // if needed for movies or other parts of your app
             MovieSeeder::class,
             MovieListSeeder::class,
+            ReviewSeeder::class,
         ]);
 
         $lists = MovieList::all();
