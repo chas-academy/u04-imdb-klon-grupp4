@@ -19,6 +19,7 @@ class MovieListFactory extends Factory
     {
         return [
             "title" => $this->faker->sentence(3),
+            "description" => $this->faker->sentences(3, true),
             "user_id" => User::all()->random()->id
         ];
     }
