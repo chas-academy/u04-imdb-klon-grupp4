@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AwardController;
+use App\Http\Controllers\MovieController;
 
 // Genre Routes
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
@@ -34,9 +35,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/movies', function () {
-    return view('movies.show');
-});
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
 
 Route::get('/ratings', function () {
     return view('ratings');
