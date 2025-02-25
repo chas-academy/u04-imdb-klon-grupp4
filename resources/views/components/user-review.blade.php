@@ -5,23 +5,26 @@
     "score",
 ])
 
-<x-base-card>
-    <div>
-        <x-avatar size="sm" />
-    </div>
-    <div 
-        x-data="{ open: false }" 
-        @click="open = !open" 
-        class="flex w-full flex-col cursor-pointer"
+<x-base-card class="space-x-4">
+    <x-avatar size="sm" />
+    <div
+        x-data="{ open: false }"
+        @click="open = !open"
+        class="flex w-full cursor-pointer flex-col"
     >
-        <div class="flex justify-between w-full">
-            <div class="flex gap-2 items-center">
-                <p class="font-bold text-lg">{{ $username }}</p>
+        <div class="flex w-full justify-between">
+            <div class="flex items-center gap-2">
+                <p class="text-base">{{ $username }}</p>
+
                 <div class="flex items-center gap-1">
-                    <p class="text-neutral-200 text-sm">{{ $score }}</p>
-                    <x-lucide-star class="size-4 text-yellow-400 fill-current" />
+                    <p class="text-sm text-neutral-200">{{ $score }}</p>
+
+                    <x-lucide-star
+                        class="size-4 fill-current text-yellow-400"
+                    />
                 </div>
             </div>
+
             <x-flag-post />
         </div>
 

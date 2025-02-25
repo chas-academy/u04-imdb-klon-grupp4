@@ -48,7 +48,6 @@ Route::get('/top-titles', function () {
     return view('top-titles');
 });
 
-Route::get('/user', [UserController::class, 'show'])->name('users.index');
 Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist');
 
 // Manage Reviews
@@ -66,6 +65,7 @@ Route::delete('/ratings/{id}', [RatingController::class, 'destroy'])->name('rati
 // Manage Lists
 Route::middleware('auth')->group(function () {
     Route::get('/lists', [ListMovieUserController::class, 'index'])->name('lists.index');
+    Route::get('/lists/{id}', [ListMovieUserController::class, 'show'])->name('lists.show');
     Route::post('/lists/create', [ListMovieUserController::class, 'store'])->name('lists.store');
     Route::delete('/lists/{list}/delete', [ListMovieUserController::class, 'destroy'])->name('lists.destroy');
 
@@ -112,9 +112,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Profile management
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [UserController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
+    Route::get('/profile-settings', [UserController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile-settings', [UserController::class, 'update'])->name('profile.update');
+    Route::delete('/profile-settings', [UserController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';

@@ -8,7 +8,7 @@
         "size-10" => $size === "sm",
         "size-28" => $size === "md",
         "size-40" => $size === "lg",
-        "flex items-center justify-center overflow-hidden rounded-full bg-neutral-200",
+        "flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-neutral-200",
     ])
 >
     @if (isset($imageUrl))

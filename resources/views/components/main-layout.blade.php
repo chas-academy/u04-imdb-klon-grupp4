@@ -12,7 +12,7 @@
         <x-header />
 
         <main
-            {{ $attributes->class("min-h-screen w-full max-w-5xl flex-1 px-4 pt-24 md:pb-16 md:pt-28") }}
+            {{ $attributes->class("min-h-screen w-full max-w-5xl flex-1 px-4 pb-20 pt-24 md:pb-16 md:pt-28") }}
         >
             {{ $slot }}
         </main>

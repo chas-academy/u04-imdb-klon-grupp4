@@ -1,29 +1,29 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-
 class UserController extends Controller
 {
     /**
-      * Display a listing of the resource.
+     * Display a listing of the resource.
      */
     public function showProfile()
     {
-        $user = Auth::user(); // retrieve the logged in user
-        return view('user.profile', compact('user'));
+        $userId = Auth::id();
+        $user = User::where('id', $userId)->with(['movieLists', 'reviews'])->firstOrFail();
+        $lists = $user->movieLists->take(3);
+        $reviews = $user->reviews->take(3);
+
+        return view('users.profile', compact('user', 'lists', 'reviews'));
     }
 
-
     /**
-    * Display the user's watchlist.
+     * Display the user's watchlist.
      */
     public function showWatchlist()
     {
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = Auth::user();
-       
+
         $validatedData = $request->validate([
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'nullable|min:8|confirmed',
@@ -57,7 +57,7 @@ class UserController extends Controller
 
 
     /**
-      * Update the user's settings.
+     * Update the user's settings.
      */
     public function updateSettings(Request $request)
     {
