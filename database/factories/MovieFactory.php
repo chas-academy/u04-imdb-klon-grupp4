@@ -25,7 +25,15 @@ class MovieFactory extends Factory
             "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/blue-maximalist-easter-egg-hunt-party-a4-design-template-1f9103a50593eb35c7b0892b8ccff14d_screen.jpg?ts=1738506739",
             "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/black-3d-bad-santa-night-party-a4-design-template-7725d5a2eb599fbbaa1e1129f9b48d24_screen.jpg?ts=1735398031",
             "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/red-maximalist-funky-monkey-night-party-insta-design-template-a04e626f8e435ce1d0587007ea175d0d_screen.jpg?ts=1735318911",
-            "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/modern-%26-minimal-drama-action-movie-a4-design-template-10517c650397549d2e7b1a56dde4721a_screen.jpg?ts=1726281052",
+            "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/modern-%26-minimal-drama-action-movie-a4-design-template-10517c650397549d2e7b1a56dde4721a_screen.jpg?ts=1726281052"
+        ];
+        // $images = glob(public_path('images/posters/*'));
+
+        $trailerIndex = $this->faker->numberBetween(0, 2);
+        $trailers = [
+            "https://www.youtube.com/embed/22w7z_lT6YM?si=JNl2pBcsvHZ3XlA8",
+            "https://www.youtube.com/embed/BjJcYdEOI0k?si=WB87lALUqHW-DYrN",
+            "https://www.youtube.com/embed/s__osnzooxA?si=8yI_-1XUIH-iZ2hZ"
         ];
 
         return [
@@ -34,6 +42,7 @@ class MovieFactory extends Factory
             'plot' => $this->faker->paragraph,
             'poster' => $imageUrls[array_rand($imageUrls)],
             'duration' => $this->faker->numberBetween(80, 100) . ' min',
+            'trailer' => $trailers[$trailerIndex]
         ];
     }
 }
