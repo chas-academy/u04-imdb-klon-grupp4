@@ -21,7 +21,22 @@ class UserController extends Controller
         return view('user.profile', compact('user'));
     }
 
+    public function showUserProfile($username)
+    {
+        $user = User::where('username', $username)->first();
+    
+        if (!$user) {
+            abort(404, 'User not found');
+        }
+    
+        return view('user.profile', compact('user'));
+    }
 
+    public function edit()
+    {
+    $user = Auth::user();
+    return view('user.edit', compact('user'));
+    }
     /**
     * Display the user's watchlist.
      */
