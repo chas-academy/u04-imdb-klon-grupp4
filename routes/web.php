@@ -81,12 +81,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('index');
 
     // User Management
-    Route::get('/users', [AdminController::class, 'indexUsers'])->name('users.index');
-    Route::get('/users/create', [AdminController::class, 'createUser'])->name('users.create-account');
+    Route::get('/users', [AdminController::class, 'indexUsers'])->name('admin-users-index');
+    Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin-users-create');
     Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
-    Route::get('/users/{user}/edit', [AdminController::class, 'editUser'])->name('users.edit');
+    Route::get('/users/{user}/edit', [AdminController::class, 'editUser'])->name('admin-users-edit');
     Route::put('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
-    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('users.delete-account');
+    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('admin-users-delete');
 
     // Movie Management
     Route::get('/movies', [AdminController::class, 'indexMovies'])->name('movies.index');
@@ -116,6 +116,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile-settings', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile-settings', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile-settings', [UserController::class, 'destroy'])->name('profile.destroy');
+   Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
