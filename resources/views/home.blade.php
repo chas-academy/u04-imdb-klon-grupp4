@@ -1,5 +1,5 @@
 <x-main-layout>
-    {{-- <div class="flex flex-col gap-5"> --}}
+    <div class="flex flex-col gap-5">
         <x-trailer
             source=""
             title=""
@@ -31,31 +31,75 @@
             </div>
         </div>
 
-        <div class="flex flex-col gap-2">
-            <x-forward-page
-                page="Genres"
-                href="{{ route('genres.index') }}"
+        <div class="grid grid-flow-col gap-4 overflow-x-auto w-full max-w-full auto-cols-[minmax(8rem,_1fr)]">
+            <x-genre
+                category="Comedy"
+                href="/genres/1"
             />
-            <div class="grid grid-flow-col gap-4 overflow-x-auto w-full max-w-full auto-cols-[minmax(8rem,_1fr)]">
-                {{-- <x-genre category="Comedy" /> lägg till href! --}}
-                <x-genre category="Fantasy" />
-                <x-genre category="Science fiction" />
-                <x-genre category="Crime" />
-                <x-genre category="Mystery" />
-                <x-genre category="Drama" />
-                <x-genre category="Horror" />
-                <x-genre category="Action" />
-                <x-genre category="Documentary" />
-                <x-genre category="Historical" />
-                <x-genre category="Western" />
-                <x-genre category="Film noir" />
-                <x-genre category="Thriller" />
-                <x-genre category="Romance" />
-                <x-genre category="Animation" />
-                <x-genre category="Musical" />
-                <x-genre category="Adventure" />
-            </div>
+            <x-genre
+                category="Fantasy"
+                href="/genres/2"
+            />
+            <x-genre
+                category="Science fiction"
+                href="/genres/3"
+            />
+            <x-genre
+                category="Crime"
+                href="/genres/4"
+            />
+            <x-genre 
+                category="Mystery"
+                href="/genres/5"
+            />
+            <x-genre 
+                category="Drama"
+                href="/genres/6"
+            />
+            <x-genre 
+                category="Horror"
+                href="/genres/7"
+            />
+            <x-genre 
+                category="Action" 
+                ref="/genres/8"
+            />
+            <x-genre 
+                category="Documentary"
+                href="/genres/9"
+            />
+            <x-genre 
+                category="Historical"
+                href="/genres/10"
+            />
+            <x-genre 
+                category="Western"
+                href="/genres/11"
+            />
+            <x-genre 
+                category="Film noir"
+                href="/genres/12"
+            />
+            <x-genre 
+                category="Thriller"
+                href="/genres/13"
+            />
+            <x-genre 
+                category="Romance"
+                href="/genres/14"
+            />
+            <x-genre 
+                category="Animation"
+                href="/genres/15"
+            />
+            <x-genre 
+                category="Musical"
+                href="/genres/16"
+            />
+            <x-genre 
+                category="Adventure"
+                href="/genres/17"
+            />
         </div>
-
     </div>
 </x-main-layout>
