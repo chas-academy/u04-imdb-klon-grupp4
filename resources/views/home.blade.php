@@ -7,7 +7,7 @@
             <x-trailer
                 source="https://www.youtube.com/embed/jan5CFWs9ic"
                 title="Jurrasic World Rebirth"
-                plot="Action/Sci-fi"
+                genre="Action/Sci-fi"
                 rating="7.9"
             />
         </div>
