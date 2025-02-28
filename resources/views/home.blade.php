@@ -1,15 +1,18 @@
 <x-main-layout>
     <div class="flex flex-col gap-[3rem]">
-        <div class="gap-2">
+
+        {{-- Trailer section --}}
+        <div class="flex flex-col gap-2">
             <h1 class="text-2xl font-bold">Featured</h1>
             <x-trailer
-                source=""
-                title=""
-                plot=""
-                rating=""
+                source="https://www.youtube.com/embed/jan5CFWs9ic"
+                title="Jurrasic World Rebirth"
+                plot="Action/Sci-fi"
+                rating="7.9"
             />
         </div>
 
+        {{-- Popular movies section --}}
         <div class="flex flex-col gap-2">
             <div class="group flex w-fit items-center gap-3">
                 <div class="h-6 w-1 rounded-full bg-sun-400"></div>
@@ -26,6 +29,8 @@
             </div>
         </div>
 
+
+        {{-- All-time favourites section --}}
         <div class="flex flex-col gap-2">
             <div class="group flex w-fit items-center gap-3">
                 <div class="h-6 w-1 rounded-full bg-sun-400"></div>
@@ -42,6 +47,7 @@
             </div>
         </div>
 
+        {{-- Genres section --}}
         <div class="flex flex-col gap-2">
             <x-forward-page page="Genres" href="{{ route('genres.index') }}" />
             <div class="grid grid-flow-col gap-4 overflow-x-auto w-full max-w-full auto-cols-[minmax(8rem,_1fr)] scrollbar-hide">
