@@ -143,7 +143,7 @@ class AdminController extends Controller
     {
         //Show all Reviews
         $reviews = Review::all();
-        return view('admin.reviews.index', compact('reviews'));
+        return view('admin.admin-reviews-index', compact('reviews'));
     }
 
     public function createReview()
