@@ -79,7 +79,7 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
-    });
+    })->name('index');
 
     // User Management
     Route::get('/users', [AdminController::class, 'indexUsers'])->name('users.index');
