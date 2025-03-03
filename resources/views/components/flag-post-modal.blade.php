@@ -1,5 +1,5 @@
 {{-- Darker background when modal is active --}}
-<div class="fixed inset-0 z-40">
+<div class="fixed inset-0 z-40"  x-show="showFlagModal" x-transition>
 <div class="absolute inset-0 bg-neutral-900 opacity-80"></div>
 
 {{-- Modal --}}
@@ -33,7 +33,7 @@
         <x-input-field id="flag-post" placeholder="Description" variant="textarea">Additional information (optional):</x-input-field>
     
         <div class="flex flex-row justify-end gap-1">
-            <x-button font="font-medium" variant="secondary">Cancel</x-button>
+            <x-button font="font-medium" variant="secondary" @click="showFlagModal = false">Cancel</x-button>
             <x-button>Submit report</x-button>
         </div>
     </div>

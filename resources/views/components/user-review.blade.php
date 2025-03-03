@@ -2,30 +2,26 @@
     "username",
     "title",
     "content",
-    "score",
+    "rating",
 ])
 
-<x-base-card class="space-x-4">
+<x-base-card class="space-x-4" x-data="{ open: false, showFlagModal: false }">
     <x-avatar size="sm" />
-    <div
-        x-data="{ open: false }"
-        @click="open = !open"
-        class="flex w-full cursor-pointer flex-col"
-    >
+    <div @click="open = !open" class="flex w-full cursor-pointer flex-col">
         <div class="flex w-full justify-between">
             <div class="flex items-center gap-2">
                 <p class="text-base">{{ $username }}</p>
 
                 <div class="flex items-center gap-1">
-                    <p class="text-sm text-neutral-200">{{ $score }}</p>
-
-                    <x-lucide-star
-                        class="size-4 fill-current text-yellow-400"
-                    />
+                    <p class="text-sm text-neutral-200">{{ $rating }}</p>
+                    <x-lucide-star class="size-4 fill-current text-yellow-400"/>
                 </div>
             </div>
 
-            <x-flag-post />
+            {{-- Opens flag post modal --}}
+            <div @click.stop="showFlagModal = true">
+                <x-flag-post />
+            </div>
         </div>
 
         <p class="text-sm">{{ $title }}</p>
@@ -34,4 +30,9 @@
             <p class="text-sm">{{ $content }}</p>
         </div>
     </div>
+
+    {{-- Flag post modal --}}
+    <x-flag-post-modal x-show="showFlagModal" @close="showFlagModal = false" />
 </x-base-card>
+
+

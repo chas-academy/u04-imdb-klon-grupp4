@@ -138,11 +138,28 @@ class AdminController extends Controller
         $movie->delete();
         return redirect()->route('admin.movies.index');
     }
+    
     //REVIEW CRUD 
-    public function indexReviews()
+    public function indexReviews(Request $request)
     {
-        //Show all Reviews
-        $reviews = Review::all();
+        // Fetch reviews along with related user and movie data
+        $reviews = Review::with('user', 'movie');
+
+        // If there is a search query, filter the reviews by title, content, or user username
+        if ($request->has('search') && $request->search != '') {
+            $reviews = $reviews->where(function($query) use ($request) {
+                $query->where('title', 'like', '%' . $request->search . '%')
+                    ->orWhere('content', 'like', '%' . $request->search . '%')
+                    ->orWhereHas('user', function($query) use ($request) {
+                        $query->where('username', 'like', '%' . $request->search . '%');
+                    });
+            });
+        }
+
+        // Fetch the reviews after applying any filters
+        $reviews = $reviews->get();
+
+        // Pass reviews to the view
         return view('admin.admin-reviews-index', compact('reviews'));
     }
 
