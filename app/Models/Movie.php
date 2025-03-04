@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -38,9 +39,8 @@ class Movie extends Model
     {
         return $this->belongsToMany(MovieList::class, 'list_movie', 'movie_id', 'list_id')->withTimestamps();
     }
-    public function review()
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
-
 }
