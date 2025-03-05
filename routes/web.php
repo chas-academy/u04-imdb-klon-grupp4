@@ -8,6 +8,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AwardController;
+use App\Http\Controllers\MovieController;
 
 // Genre Routes
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
@@ -34,9 +35,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/movies', function () {
-    return view('movies.show');
-});
+Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
 
 Route::get('/ratings', function () {
     return view('ratings');
@@ -48,7 +47,6 @@ Route::get('/top-titles', function () {
     return view('top-titles');
 });
 
-Route::get('/user', [UserController::class, 'show'])->name('users.index');
 Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.watchlist');
 
 // Manage Reviews
@@ -66,6 +64,7 @@ Route::delete('/ratings/{id}', [RatingController::class, 'destroy'])->name('rati
 // Manage Lists
 Route::middleware('auth')->group(function () {
     Route::get('/lists', [ListMovieUserController::class, 'index'])->name('lists.index');
+    Route::get('/lists/{id}', [ListMovieUserController::class, 'show'])->name('lists.show');
     Route::post('/lists/create', [ListMovieUserController::class, 'store'])->name('lists.store');
     Route::delete('/lists/{list}/delete', [ListMovieUserController::class, 'destroy'])->name('lists.destroy');
 
@@ -114,9 +113,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Profile management
 Route::middleware('auth')->group(function () {
-   Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__ . '/auth.php';

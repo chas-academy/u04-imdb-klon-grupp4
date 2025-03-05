@@ -15,35 +15,25 @@ class User extends Authenticatable
         'email',
         'password',
         'is_admin',
-        
     ];
-
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-   
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
     ];
 
-    /**
-     * Define the many-to-many relationship with Movie.
-     */
-    public function movies()
-    {
-        return $this->belongsToMany(Movie::class, 'user_movie', 'user_id', 'movie_id')->withTimestamps();
-    }
     public function movieLists()
     {
-        return $this->belongsToMany(MovieList::class, 'lists', 'user_id', 'list_id')->withTimestamps();
-    } 
-    public function review()
+        return $this->hasMany(MovieList::class);
+    }
+
+    public function reviews()
     {
         return $this->hasMany(Review::class);
     }
-
 }

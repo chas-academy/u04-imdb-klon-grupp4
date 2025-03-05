@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -29,14 +30,14 @@ class GenreController extends Controller
     }
 
     // Add a movie to the user's watchlist
-    public function addToWatchlist(Request $request, $movieId)
+    public function addToWatchlist(Request $request, $id, $movie_id)
     {
         // Assume the user is authenticated and retrieve the user
         $user = $request->user();
 
         // Attach the movie to the user's watchlist if not already added
-        if (!$user->watchlist->contains($movieId)) {
-            $user->watchlist()->attach($movieId);
+        if (!$user->watchlist->contains($movie_id)) {
+            $user->watchlist()->attach($movie_id);
         }
 
         // Redirect back with a success message
