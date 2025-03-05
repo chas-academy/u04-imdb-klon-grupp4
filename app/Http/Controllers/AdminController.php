@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Movie;
 use App\Models\Review;
 use App\Models\Report;
+use App\Models\Report;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
@@ -221,7 +223,7 @@ class AdminController extends Controller
     public function storeReport(Request $request)
     {
         $validated = $request->validate([
-            'review_id' => 'required|exists:reviews,id',
+            'review_id' => 'nullable|exists:reviews,id',
             'flags' => 'required|array',
             'flags.*' => 'string',
             'description' => 'nullable|string|max:500',
