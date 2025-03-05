@@ -33,13 +33,13 @@ class UserController extends Controller
             abort(404, 'User not found');
         }
     
-        return view('user.profile', compact('user'));
+        return view('users.profile', compact('user'));
     }
 
     public function edit()
     {
         $user = Auth::user();
-        return view('user.edit', compact('user'));
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $watchlist = $user->watchlist()->with('movies')->get(); // Assume a relationship between user and watchlist
-        return view('user.watchlist', compact('watchlist'));
+        return view('users.watchlist', compact('watchlist'));
     }
 
     /**
