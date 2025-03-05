@@ -1,5 +1,5 @@
 <x-main-layout class="flex flex-col gap-8">
-    <x-previous-page page="home" />
+    <x-previous-page page="home" href="{{ route('home') }}" />
     <x-trailer source="{{ $movie->trailer }}" />
 
     <div class="flex flex-col gap-4 md:flex-row md:gap-8">
