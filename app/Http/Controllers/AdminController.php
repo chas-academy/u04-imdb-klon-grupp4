@@ -39,13 +39,14 @@ class AdminController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin-users-index');
     }
 
     // Show the form to edit an existing user
     public function editUser($user)
     {
-        return view('admin.admin-users-edit', compact('user'));
+        $fetchuser = User::where("username", $user)->first();
+        return view('admin.admin-users-edit', compact('fetchuser'));
     }
 
     // Update an existing user
@@ -63,14 +64,14 @@ class AdminController extends Controller
             'password' => $validated['password'] ? bcrypt($validated['password']) : $user->password,
         ]);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.admin-users-index');
     }
 
     // Delete user
     public function destroyUser(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.admin-users-index');
     }
     //Movies CRUD
     // Display all movies
