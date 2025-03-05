@@ -103,6 +103,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/reviews/{review}/edit', [AdminController::class, 'editReview'])->name('reviews.edit');
     Route::put('/reviews/{review}', [AdminController::class, 'updateReview'])->name('reviews.update');
     Route::delete('/reviews/{review}', [AdminController::class, 'destroyReview'])->name('reviews.destroy');
+    Route::post('/report', [AdminController::class, 'storeReport'])->name('report.store');
 
     // Rating Management
     Route::get('/ratings', [AdminController::class, 'indexRatings'])->name('ratings.index');

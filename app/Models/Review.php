@@ -21,5 +21,10 @@ class Review extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
 }
 

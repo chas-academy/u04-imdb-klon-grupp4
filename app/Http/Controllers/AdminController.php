@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Movie;
 use App\Models\Review;
+use App\Models\Report;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -212,5 +214,25 @@ class AdminController extends Controller
         //Destroy/delete Review
         $review->delete();
         return redirect()->route('admin.reviews.index');
+    }
+
+    // Report management
+    public function storeReport(Request $request)
+    {
+        $validated = $request->validate([
+            'review_id' => 'nullable|exists:reviews,id',
+            'flags' => 'required|array',
+            'flags.*' => 'string',
+            'description' => 'nullable|string|max:500',
+        ]);
+
+        Report::create([
+            'user_id' => Auth::id(),
+            'review_id' => $validated['review_id'] ?? null,
+            'flags' => $validated['flags'],
+            'description' => $validated['description'] ?? null,
+        ]);
+
+        return back()->with('success', 'Report submitted successfully.');
     }
 }
