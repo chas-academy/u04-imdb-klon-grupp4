@@ -8,7 +8,7 @@
         <nav class="flex flex-col">
             <x-accordion
                 category="Users"
-                :subcategories="[['label'=> 'User settings', 'href' => route('admin.users.index')]]"
+                :subcategories="[['label'=> 'User settings', 'href' => route('admin.admin-users-index')]]"
             >
                 <x-slot:icon>
                     <x-lucide-user-round-pen />
