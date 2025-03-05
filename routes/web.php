@@ -113,10 +113,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Profile management
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [UserController::class, 'showProfile'])->name('users.profile');
-    Route::get('/profile/edit', [UserController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [UserController::class, 'showProfile'])->name('profile');
+    Route::get('/profile/edit', [UserController::class, 'edit'])->name('user-settings');
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [UserController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile', [UserController::class, 'destroy'])->name('delete-account');
 });
 
 
