@@ -220,7 +220,7 @@ class AdminController extends Controller
     public function storeReport(Request $request)
     {
         $validated = $request->validate([
-            'review_id' => 'nullable|exists:reviews,id',
+            'review_id' => 'required|exists:reviews,id',
             'flags' => 'required|array',
             'flags.*' => 'string',
             'description' => 'nullable|string|max:500',

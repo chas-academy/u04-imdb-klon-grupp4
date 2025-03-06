@@ -3,9 +3,10 @@
     "title",
     "content",
     "rating",
+    "reviewId",
 ])
 
-<x-base-card class="space-x-4" x-data="{ open: false, showFlagModal: false }">
+<x-base-card class="space-x-4" x-data="{ open: false, showFlagModal: false, reviewId: '{{ $reviewId }}' }">
     <x-avatar size="sm" />
     <div @click="open = !open" class="flex w-full cursor-pointer flex-col">
         <div class="flex w-full justify-between">
@@ -32,7 +33,7 @@
     </div>
 
     {{-- Flag post modal --}}
-    <x-flag-post-modal x-show="showFlagModal" @close="showFlagModal = false" />
+    <x-flag-post-modal :reviewId="$reviewId" x-show="showFlagModal" @close="showFlagModal = false" />
 </x-base-card>
 
 

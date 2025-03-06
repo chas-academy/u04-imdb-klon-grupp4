@@ -31,7 +31,8 @@
                     :username="$review->user->username" 
                     :title="$review->title" 
                     :content="$review->content"
-                    :rating="number_format($review->rating, 1)" 
+                    :rating="number_format($review->rating, 1)"
+                    :reviewId="$review->id"
                 />
             @endforeach
         </div>

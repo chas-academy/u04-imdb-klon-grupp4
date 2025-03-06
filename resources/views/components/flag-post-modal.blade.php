@@ -7,7 +7,7 @@
         <form method="POST" action="{{ route('admin.report.store') }}" class="flex flex-col gap-2 w-full">
             @csrf
 
-            <input type="hidden" name="review_id" value="{{ $review->id ?? '' }}">
+            <input type="hidden" name="review_id" :value="reviewId">
 
             <div>
                 <p class="text-lg font-bold">Why are you flagging this post?</p>
