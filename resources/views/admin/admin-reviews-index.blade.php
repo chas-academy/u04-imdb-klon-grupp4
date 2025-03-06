@@ -9,13 +9,13 @@
         <h1 class="text-2xl font-bold text-center"> ALL REVIEWS </h1>
  
     <div class="flex flex-row justify-center items-center">
-    <form method="GET" action="{{ route('admin.reviews.index') }}" class="flex items-center gap-3">
+    <form method="GET" action="{{ route('admin.reviews.index') }}" class="flex items-center gap-2">
         <input 
             id="search"
             name="search"
             type="text"
             placeholder="Search..."
-            class="p-2 rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none w-64"
+            class="rounded-lg bg-neutral-600 placeholder:text-neutral-200 border-none"
             value="{{ request()->search }}"
         >
 
