@@ -38,6 +38,7 @@
                     :title="$review->title"
                     :content="$review->content"
                     :rating="$review->own_rating"
+                    :reviewId="$review->id"
                 />
             @endforeach
         </section>
