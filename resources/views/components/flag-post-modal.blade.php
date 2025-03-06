@@ -23,17 +23,7 @@
             <div class="flex gap-1">
                 <x-checkbox name="flags[]" value="inappropriate"/><p><b>Inappropriate:</b> This post contains offensive or inappropriate material.</p>
             </div>
-            <div class="flex gap-1">
-                <x-checkbox name="flags[]" value="spam"/><p><b>Spam:</b> This post is spam.</p>
-            </div>
-            
-            <div class="flex gap-1">
-                <x-checkbox name="flags[]" value="inappropriate"/><p><b>Inappropriate:</b> This post contains offensive or inappropriate material.</p>
-            </div>
 
-            <div class="flex gap-1">
-                <x-checkbox name="flags[]" value="misinformation"/><p><b>Misinformation:</b> This post contains misleading or false information.</p>
-            </div>
             <div class="flex gap-1">
                 <x-checkbox name="flags[]" value="misinformation"/><p><b>Misinformation:</b> This post contains misleading or false information.</p>
             </div>
@@ -41,13 +31,7 @@
             <div class="flex gap-1">
                 <x-checkbox name="flags[]" value="irrelevant"/><p><b>Irrelevant:</b> This post is not relevant to the topic.</p>
             </div>
-            <div class="flex gap-1">
-                <x-checkbox name="flags[]" value="irrelevant"/><p><b>Irrelevant:</b> This post is not relevant to the topic.</p>
-            </div>
 
-            <div class="flex gap-1">
-                <x-checkbox name="flags[]" value="other"/><p><b>Other.</b></p>
-            </div>
             <div class="flex gap-1">
                 <x-checkbox name="flags[]" value="other"/><p><b>Other.</b></p>
             </div>
