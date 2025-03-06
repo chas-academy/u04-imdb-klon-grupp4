@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the profile of the authenticated user.
      */
     public function showProfile()
     {
@@ -39,6 +39,26 @@ class UserController extends Controller
         return view('users.edit', compact('user'));
     }
     /**
+     * Display the profile of a specific user by username.
+     */
+    public function showUserProfile($username)
+    {
+        $user = User::where('username', $username)->first();
+    
+        if (!$user) {
+            abort(404, 'User not found');
+        }
+    
+        return view('users.profile', compact('user'));
+    }
+
+    public function edit()
+    {
+        $user = Auth::user();
+        return view('users.edit', compact('user'));
+    }
+
+    /**
      * Display the user's watchlist.
      */
     public function showWatchlist()
@@ -47,7 +67,6 @@ class UserController extends Controller
         $watchlist = $user->watchlist()->with('movies')->get(); // Assume a relationship between user and watchlist
         return view('users.watchlist', compact('watchlist'));
     }
-
 
     /**
      * Update the user's information.
@@ -61,16 +80,13 @@ class UserController extends Controller
             'password' => 'nullable|min:8|confirmed',
         ]);
 
-
         $user->update([
             'email' => $validatedData['email'],
             'password' => $validatedData['password'] ? Hash::make($validatedData['password']) : $user->password,
         ]);
 
-
         return redirect()->route('user.profile')->with('success', 'Dina uppgifter har uppdaterats.');
     }
-
 
     /**
      * Update the user's settings.
@@ -79,18 +95,14 @@ class UserController extends Controller
     {
         $user = Auth::user();
 
-
         $validatedData = $request->validate([
             'is_admin' => 'boolean',
         ]);
 
-
         $user->update($validatedData);
-
 
         return redirect()->route('user.profile')->with('success', 'Inställningarna har uppdaterats.');
     }
-
 
     /**
      * Delete the user's account.
@@ -99,7 +111,6 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user->delete();
-
 
         return redirect('/')->with('success', 'Ditt konto har tagits bort.');
     }

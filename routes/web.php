@@ -80,6 +80,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('admin.index');
     })->name('index');
 
+    Route::get('/user/{username}', [UserController::class, 'showUserProfile'])->name('users.show');
+    
     // User Management
     Route::get('/users', [AdminController::class, 'indexUsers'])->name('admin-users-index');
     Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin-users-create');
@@ -117,5 +119,6 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('delete-account');
 });
+
 
 require __DIR__ . '/auth.php';
