@@ -37,7 +37,7 @@
             <x-input-field id="flag-post" name="description" placeholder="Description" variant="textarea">Additional information (optional):</x-input-field>
         
             <div class="flex flex-row justify-end gap-1">
-                <x-button font="font-medium" variant="secondary" @click="showFlagModal = false">Cancel</x-button>
+                <x-button type="button" font="font-medium" variant="secondary" @click="showFlagModal = false">Cancel</x-button>
                 <x-button type="submit">Submit report</x-button>
             </div>
         </form>
