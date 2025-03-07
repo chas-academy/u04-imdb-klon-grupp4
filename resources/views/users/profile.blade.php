@@ -37,7 +37,8 @@
                     :username="$user->username"
                     :title="$review->title"
                     :content="$review->content"
-                    :score="$review->own_rating"
+                    :rating="$review->own_rating"
+                    :reviewId="$review->id"
                 />
             @endforeach
         </section>

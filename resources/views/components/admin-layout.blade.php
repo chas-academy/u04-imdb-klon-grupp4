@@ -6,6 +6,7 @@
         <title>Movie Scout</title>
         <link rel="icon" href="{{ asset("images/logomark.svg") }}" />
         @vite(["resources/css/app.css", "resources/js/app.js"])
+        <script src="//unpkg.com/alpinejs" defer></script>
     </head>
     <body class="flex">
         <x-aside />
