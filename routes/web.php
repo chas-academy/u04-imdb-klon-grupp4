@@ -36,6 +36,9 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/movies/{id}', [MovieController::class, 'show'])->name('movies.show');
+Route::post('/movies/{movie_id}/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::get('/movies/{movie_id}/reviews', [ReviewController::class, 'index'])->name('reviews.index');
+
 
 Route::get('/ratings', function () {
     return view('ratings');
@@ -51,7 +54,6 @@ Route::get('/watchlist', [ReviewController::class, 'watchlist'])->name('user.wat
 
 // Manage Reviews
 Route::get('/reviews/create/{movie_id}', [ReviewController::class, 'create'])->name('reviews.create');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
 Route::get('/reviews/{id}/edit', [ReviewController::class, 'edit'])->name('reviews.edit');
 Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
 Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
