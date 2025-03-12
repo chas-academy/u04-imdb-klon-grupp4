@@ -36,12 +36,12 @@ class AdminController extends Controller
         ]);
 
         User::create([
-            'name' => $validated['name'],
+            'username' => $validated['name'],
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
         ]);
 
-        return redirect()->route('admin-users-index');
+        return redirect()->route('admin.admin-users-index');
     }
 
     // Show the form to edit an existing user
@@ -59,9 +59,8 @@ class AdminController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|confirmed',
         ]);
-
         $user->update([
-            'name' => $validated['name'],
+            'username' => $validated['name'],
             'email' => $validated['email'],
             'password' => $validated['password'] ? bcrypt($validated['password']) : $user->password,
         ]);
