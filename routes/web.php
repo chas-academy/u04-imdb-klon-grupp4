@@ -9,6 +9,7 @@ use App\Http\Controllers\RatingController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\AwardController;
 use App\Http\Controllers\MovieController;
+use App\Http\Middleware\EnsureAdmin;
 
 // Genre Routes
 Route::get('/genres', [GenreController::class, 'index'])->name('genres.index');
@@ -73,43 +74,41 @@ Route::middleware('auth')->group(function () {
 });
 
 // Admin Routes
-// TODO: add middlewares when admin login is working
-// middleware(['auth', 'admin'])->
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/', function () {
-        return view('admin.index');
-    })->name('index');
+Route::middleware(['auth', EnsureAdmin::class])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('dashboard', [AdminController::class, 'index'])->name('dashboard');
 
-    Route::get('/user/{username}', [UserController::class, 'showUserProfile'])->name('users.show');
-    
-    // User Management
-    Route::get('/users', [AdminController::class, 'indexUsers'])->name('admin-users-index');
-    Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin-users-create');
-    Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
-    Route::get('/users/{user}/edit', [AdminController::class, 'editUser'])->name('admin-users-edit');
-    Route::put('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
-    Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('admin-users-delete');
+        Route::get('/user/{username}', [UserController::class, 'showUserProfile'])->name('users.show');
+        
+        // User Management
+        Route::get('/users', [AdminController::class, 'indexUsers'])->name('admin-users-index');
+        Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin-users-create');
+        Route::post('/users', [AdminController::class, 'storeUser'])->name('users.store');
+        Route::get('/users/{user}/edit', [AdminController::class, 'editUser'])->name('admin-users-edit');
+        Route::put('/users/{user}', [AdminController::class, 'updateUser'])->name('users.update');
+        Route::delete('/users/{user}', [AdminController::class, 'destroyUser'])->name('admin-users-delete');
 
-    // Movie Management
-    Route::get('/movies', [AdminController::class, 'indexMovies'])->name('movies.index');
-    Route::get('/movies/create', [AdminController::class, 'createMovie'])->name('movies.create');
-    Route::post('/movies', [AdminController::class, 'storeMovie'])->name('movies.store');
-    Route::get('/movies/{movie}/edit', [AdminController::class, 'editMovie'])->name('movies.edit');
-    Route::put('/movies/{movie}', [AdminController::class, 'updateMovie'])->name('movies.update');
-    Route::delete('/movies/{movie}', [AdminController::class, 'destroyMovie'])->name('movies.destroy');
+        // Movie Management
+        Route::get('/movies', [AdminController::class, 'indexMovies'])->name('movies.index');
+        Route::get('/movies/create', [AdminController::class, 'createMovie'])->name('movies.create');
+        Route::post('/movies', [AdminController::class, 'storeMovie'])->name('movies.store');
+        Route::get('/movies/{movie}/edit', [AdminController::class, 'editMovie'])->name('movies.edit');
+        Route::put('/movies/{movie}', [AdminController::class, 'updateMovie'])->name('movies.update');
+        Route::delete('/movies/{movie}', [AdminController::class, 'destroyMovie'])->name('movies.destroy');
 
-    // Review Management
-    Route::get('/reviews', [AdminController::class, 'indexReviews'])->name('reviews.index');
-    Route::get('/reviews/create', [AdminController::class, 'createReview'])->name('reviews.create');
-    Route::post('/reviews', [AdminController::class, 'storeReview'])->name('reviews.store');
-    Route::get('/reviews/{review}/edit', [AdminController::class, 'editReview'])->name('reviews.edit');
-    Route::put('/reviews/{review}', [AdminController::class, 'updateReview'])->name('reviews.update');
-    Route::delete('/reviews/{review}', [AdminController::class, 'destroyReview'])->name('reviews.destroy');
-    Route::post('/report', [AdminController::class, 'storeReport'])->name('report.store');
+        // Review Management
+        Route::get('/reviews', [AdminController::class, 'indexReviews'])->name('reviews.index');
+        Route::get('/reviews/create', [AdminController::class, 'createReview'])->name('reviews.create');
+        Route::post('/reviews', [AdminController::class, 'storeReview'])->name('reviews.store');
+        Route::get('/reviews/{review}/edit', [AdminController::class, 'editReview'])->name('reviews.edit');
+        Route::put('/reviews/{review}', [AdminController::class, 'updateReview'])->name('reviews.update');
+        Route::delete('/reviews/{review}', [AdminController::class, 'destroyReview'])->name('reviews.destroy');
+        Route::post('/report', [AdminController::class, 'storeReport'])->name('report.store');
 
-    // Rating Management
-    Route::get('/ratings', [AdminController::class, 'indexRatings'])->name('ratings.index');
-    Route::delete('/ratings/{id}', [AdminController::class, 'destroyRating'])->name('ratings.destroy');
+        // Rating Management
+        Route::get('/ratings', [AdminController::class, 'indexRatings'])->name('ratings.index');
+        Route::delete('/ratings/{id}', [AdminController::class, 'destroyRating'])->name('ratings.destroy');
+    });
 });
 
 // Profile management
@@ -119,6 +118,5 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [UserController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [UserController::class, 'destroy'])->name('delete-account');
 });
-
 
 require __DIR__ . '/auth.php';

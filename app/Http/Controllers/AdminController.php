@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
+    public function index()
+    {
+        return view('admin.index');
+    }
     //USER CRUD
     // Display all users
     public function indexUsers()
