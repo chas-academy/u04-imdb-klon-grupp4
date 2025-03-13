@@ -37,7 +37,6 @@ Route::middleware('guest')->group(function () {
     // Admin login routes
     Route::get('login/admin', [AdminAuthenticatedSessionController::class, 'create'])
         ->name('login.admin');
-
     Route::post('login/admin', [AdminAuthenticatedSessionController::class, 'store']);
 });
 
