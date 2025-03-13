@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\MovieList;
+use Illuminate\Support\Facades\Auth;
 
 
 class ListMovieUserController extends Controller
@@ -28,7 +30,18 @@ class ListMovieUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $list = new MovieList();
+        $list->title = $request->title;
+        $list->description = $request->description;
+        $list->user_id = Auth::user()->id;
+        $list->save();
+
+        return redirect()->route('lists.index')->with('success', 'List created successfully.');
     }
 
     /**
