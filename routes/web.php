@@ -75,10 +75,10 @@ Route::middleware('auth')->group(function () {
 // Admin Routes
 // TODO: add middlewares when admin login is working
 // middleware(['auth', 'admin'])->
-Route::prefix('admin')->name('admin.')->group(function () {
+/*Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', function () {
         return view('admin.index');
-    })->name('index');
+    })->name('index'); */
 
     Route::get('/user/{username}', [UserController::class, 'showUserProfile'])->name('users.show');
     
