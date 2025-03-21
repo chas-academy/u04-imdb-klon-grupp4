@@ -8,7 +8,7 @@ class MovieList extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'name'];
+    protected $fillable = ['user_id', 'description', 'title'];
     protected $table = 'lists';
 
     public function movies()
