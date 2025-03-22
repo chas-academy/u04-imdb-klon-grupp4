@@ -19,7 +19,13 @@
             </x-button>
         </div>
 
-        <x-button><a href="{{ route("register") }}">Sign up</a></x-button>
+        @auth
+            <a href="{{ route("profile") }}"><x-avatar size="sm" /></a>
+        @endauth
+
+        @guest
+            <x-button><a href="{{ route("register") }}">Sign up</a></x-button>
+        @endguest
 
         <button @click="open = true" class="size-6 md:hidden">
             <x-lucide-menu />
@@ -35,9 +41,15 @@
         </button>
 
         <a href="{{ route("home") }}">Home</a>
-        <a href="/">Genres</a>
-        <a href="/">Watchlist</a>
-        {{-- change to profile if signed in --}}
-        <a href="{{ route("register") }}">Sign in</a>
+        <a href="{{ route("genres.index") }}">Genres</a>
+        {{-- <a href="/">Watchlist</a> --}}
+
+        @auth
+            <a href="{{ route("profile") }}">Profile</a>
+        @endauth
+
+        @guest
+            <a href="{{ route("register") }}">Sign up</a>
+        @endguest
     </div>
 </header>
