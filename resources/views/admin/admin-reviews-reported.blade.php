@@ -37,14 +37,16 @@
 
             <div class="flex gap-4">
                 <!-- Accept Button -->
-                <form method="POST" action="{{ route('admin.acceptReview', $report->review->id) }}">
+                <form method="POST" action="{{ route('admin.admin.acceptReview', $report->id) }}">
                     @csrf
-                    @method('PATCH')
                     <button type="submit" class="x-button variant-success">Accept</button>
                 </form>
 
+
+
+
                 <!-- Delete Button -->
-                <form method="POST" action="{{ route('admin.deleteReview', $report->review->id) }}">
+                <form method="POST" action="{{ route('admin.admin.deleteReport', $report->id) }}">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="x-button variant-danger">Delete</button>

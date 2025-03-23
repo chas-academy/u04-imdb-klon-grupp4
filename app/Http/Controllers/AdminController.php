@@ -247,24 +247,24 @@ class AdminController extends Controller
     }
 
     public function acceptReview($reportId)
-    {
-        $report = Report::findOrFail($reportId);
-        $review = $report->review; // Assuming 'review' is a relationship
+{
+    $report = Report::findOrFail($reportId);
+    $review = $report->review; // Assuming 'review' is a relationship
 
-        // You can update review status to accepted here
-        $review->status = 'accepted';
-        $review->save();
+    $review->status = 'accepted';
+    $review->save();
 
-        $report->delete(); // Optionally, delete the report after action
+    $report->delete(); // Optionally, delete the report after action
 
-        return redirect()->route('admin.admin-reviews-reported')->with('success', 'Review accepted.');
-    }
+    return redirect()->route('admin.admin.reviews.reported')->with('success', 'Review accepted.');
+}
+
 
     public function deleteReport($reportId)
     {
         $report = Report::findOrFail($reportId);
         $report->delete();
 
-        return redirect()->route('admin.admin-reviews-reported')->with('success', 'Report deleted.');
+        return redirect()->route('admin.admin.reviews.reported')->with('success', 'Report deleted.');
     }
 }
