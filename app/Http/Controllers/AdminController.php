@@ -141,7 +141,7 @@ class AdminController extends Controller
         $movie->delete();
         return redirect()->route('admin.movies.index');
     }
-    
+
     //REVIEW CRUD 
     public function indexReviews(Request $request)
     {
@@ -150,10 +150,10 @@ class AdminController extends Controller
 
         // If there is a search query, filter the reviews by title, content, or user username
         if ($request->has('search') && $request->search != '') {
-            $reviews = $reviews->where(function($query) use ($request) {
+            $reviews = $reviews->where(function ($query) use ($request) {
                 $query->where('title', 'like', '%' . $request->search . '%')
                     ->orWhere('content', 'like', '%' . $request->search . '%')
-                    ->orWhereHas('user', function($query) use ($request) {
+                    ->orWhereHas('user', function ($query) use ($request) {
                         $query->where('username', 'like', '%' . $request->search . '%');
                     });
             });
@@ -235,5 +235,37 @@ class AdminController extends Controller
         ]);
 
         return back()->with('success', 'Report submitted successfully.');
+    }
+    //Admin-reported-reviews
+    public function showReportedReviews()
+    {
+        // Get all reported reviews
+        $reportedReviews = Report::with('review') // Assuming 'review' is a relationship
+            ->whereNotNull('review_id')
+            ->get();
+
+        return view('admin.admin-reviews-reported', compact('reportedReviews'));
+    }
+
+    public function acceptReview($reportId)
+    {
+        $report = Report::findOrFail($reportId);
+        $review = $report->review; // Assuming 'review' is a relationship
+
+        // You can update review status to accepted here
+        $review->status = 'accepted';
+        $review->save();
+
+        $report->delete(); // Optionally, delete the report after action
+
+        return redirect()->route('admin.admin-reviews-reported')->with('success', 'Review accepted.');
+    }
+
+    public function deleteReport($reportId)
+    {
+        $report = Report::findOrFail($reportId);
+        $report->delete();
+
+        return redirect()->route('admin.admin-reviews-reported')->with('success', 'Report deleted.');
     }
 }
