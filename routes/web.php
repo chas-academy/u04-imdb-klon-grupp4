@@ -81,7 +81,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('index');
 
     Route::get('/user/{username}', [UserController::class, 'showUserProfile'])->name('users.show');
-    
+
     // User Management
     Route::get('/users', [AdminController::class, 'indexUsers'])->name('admin-users-index');
     Route::get('/users/create', [AdminController::class, 'createUser'])->name('admin-users-create');
@@ -106,6 +106,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::put('/reviews/{review}', [AdminController::class, 'updateReview'])->name('reviews.update');
     Route::delete('/reviews/{review}', [AdminController::class, 'destroyReview'])->name('reviews.destroy');
     Route::post('/report', [AdminController::class, 'storeReport'])->name('report.store');
+    Route::get('/reviews-reported', [AdminController::class, 'showReportedReviews'])->name('admin.reviews.reported');
+    Route::post('/reported-reviews/{reportId}/accept', [AdminController::class, 'acceptReview'])->name('admin.acceptReview');
+    Route::delete('/reported-reviews/{reportId}', [AdminController::class, 'deleteReport'])->name('admin.deleteReport');
+    
+
 
     // Rating Management
     Route::get('/ratings', [AdminController::class, 'indexRatings'])->name('ratings.index');
