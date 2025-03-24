@@ -22,7 +22,7 @@ class ListMovieUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('lists.create');
     }
 
     /**
