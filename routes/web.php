@@ -64,9 +64,10 @@ Route::delete('/ratings/{id}', [RatingController::class, 'destroy'])->name('rati
 // Manage Lists
 Route::middleware('auth')->group(function () {
     Route::get('/lists', [ListMovieUserController::class, 'index'])->name('lists.index');
+    Route::get('/lists/create', [ListMovieUserController::class, 'create'])->name('lists.create');
     Route::get('/lists/{id}', [ListMovieUserController::class, 'show'])->name('lists.show');
     Route::post('/lists/create', [ListMovieUserController::class, 'store'])->name('lists.store');
-    Route::delete('/lists/{list}/delete', [ListMovieUserController::class, 'destroy'])->name('lists.destroy');
+        Route::delete('/lists/{list}/delete', [ListMovieUserController::class, 'destroy'])->name('lists.destroy');
 
     Route::post('/lists/{list}/add', [ListMovieUserController::class, 'addMovie'])->name('lists.addMovie');
     Route::delete('/lists/{list}/remove/{movie}', [ListMovieUserController::class, 'removeMovie'])->name('lists.removeMovie');
