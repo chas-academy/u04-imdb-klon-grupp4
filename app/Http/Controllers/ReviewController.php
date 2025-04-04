@@ -40,21 +40,19 @@ class ReviewController extends Controller
     public function store(Request $request, $movie_id)
     {
         $request->validate([
+            'title' => 'required|string|max:255',
             'content' => 'required|string|max:1000',
             'rating' => 'required|integer|min:1|max:10',
         ]);
-
-
-        Review::create([
+    
+        // Store the review data in session
+        session()->put('temporary_review', [
+            'title' => $request->input('title'),
             'content' => $request->input('content'),
             'rating' => $request->input('rating'),
-            'own_rating' => $request->input('own_rating', null),
-            'movie_id' => $movie_id,
-            'user_id' => Auth::id(),
         ]);
-
-
-        return redirect()->route('reviews.index', $movie_id)->with('success', 'Review added successfully!');
+    
+        return redirect()->route('reviews.index', ['movie_id' => $movie_id])->with('success', 'Review saved temporarily!');
     }
 
 
@@ -174,6 +172,3 @@ class ReviewController extends Controller
         return view('reviews.recent', compact('reviews'));
     }
 }
-
-
-
