@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
             MovieSeeder::class,
             MovieListSeeder::class,
             ReviewSeeder::class,
+            ReportedReviewSeeder::class,
         ]);
 
         $lists = MovieList::all();
